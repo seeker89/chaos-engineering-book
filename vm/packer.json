@@ -1,17 +1,62 @@
 {
     "variables": {
-        "USERNAME": "ubuntu"
+        "name": "ubuntu-18.04-desktop-amd64",
+        "cpus": "2",
+        "memory": "4096",
+        "ubuntu_codename": "disco",
+        "ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/dists/",
+        "ssh_username": "chaos",
+        "ssh_password": "chaos",
+        "disk_size": "16200",
+        "headless": "false"
     },
     "builders": [
         {
+            "vm_name": "{{ user `name` }}",
             "type": "virtualbox-iso",
             "guest_os_type": "Ubuntu_64",
-            "iso_url": "http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.iso",
-            "iso_checksum": "72491db7ef6f3cd4b085b9fe1f232345",
-            "iso_checksum_type": "md5",
-            "ssh_username": "ubuntu",
-            "ssh_password": "ubuntu",
-            "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+            "iso_checksum_type": "sha256",
+            "iso_checksum_url": "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/images/SHA256SUMS",
+            "iso_urls": [ "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/images/netboot/mini.iso" ],
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_wait_timeout": "60m",
+            "headless": "{{ user `headless` }}",
+            "output_directory": "{{ user `name` }}-virtualbox-iso",
+            "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+            "hard_drive_interface": "sata",
+            "disk_size": "{{ user `disk_size` }}",
+            "vboxmanage": [
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--cpus",
+                "{{ user `cpus` }}"
+              ],
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--memory",
+                "{{ user `memory` }}"
+              ],
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--audiocontroller",
+                "hda"
+              ]
+            ],
+            "boot_wait": "5s",
+            "boot_command":
+            [
+              "<tab>",
+              "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+              "auto=true ",
+              "net.ifnames=0 ",
+              "hostname=localhost ",
+              "<enter>"
+            ],
+            "http_directory": "http"
         }
     ],
     "provisioners": [
