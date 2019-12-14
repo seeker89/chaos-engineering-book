@@ -1,4 +1,10 @@
 ---
+- name: Install git
+  become: true
+  apt:
+    name: git
+    state: present
+    update_cache: yes
 
 - name: Check out the book source code to home
   git:
