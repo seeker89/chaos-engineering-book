@@ -26,3 +26,7 @@ If you'd like to build the VM from scratch, please follow these steps.
   - prepare all the examples
 
 In order to launch packer, run `make build`. Note, that you will only need to dowload the iso image once, and that it will be placed in `./packer_cache`.
+
+## Credits
+
+Thanks to https://github.com/ruzickap/packer-templates for figuring out the preseed config for ubuntu desktops!
