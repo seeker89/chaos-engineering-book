@@ -1,10 +1,33 @@
 {
-  "type": "virtualbox-iso",
-  "guest_os_type": "Ubuntu_64",
-  "iso_url": "http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.iso",
-  "iso_checksum": "72491db7ef6f3cd4b085b9fe1f232345",
-  "iso_checksum_type": "md5",
-  "ssh_username": "ubuntu",
-  "ssh_password": "ubuntu",
-  "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+    "variables": {
+        "USERNAME": "ubuntu"
+    },
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "Ubuntu_64",
+            "iso_url": "http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.iso",
+            "iso_checksum": "72491db7ef6f3cd4b085b9fe1f232345",
+            "iso_checksum_type": "md5",
+            "ssh_username": "ubuntu",
+            "ssh_password": "ubuntu",
+            "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "./ansible/site.yml",
+            "groups": [
+                "workers"
+            ],
+            "user": "{{user `USERNAME`}}",
+            "extra_arguments": [
+                "--extra-vars", "ansible_python_interpreter='/usr/bin/env python3'"
+            ],
+            "ansible_env_vars": [
+                "ANSIBLE_FORCE_COLOR=1"
+            ]
+        }
+    ]
 }
