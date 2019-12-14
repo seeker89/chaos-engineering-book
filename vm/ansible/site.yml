@@ -1,0 +1,5 @@
+---
+- hosts: masters[0]
+  gather_facts: true
+  roles:
+    - {role: prerequisites, tags: ['prerequisites','base']}
