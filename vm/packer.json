@@ -1,0 +1,82 @@
+{
+    "variables": {
+        "name": "ubuntu-18.04-desktop-amd64",
+        "cpus": "2",
+        "memory": "4096",
+        "ubuntu_codename": "disco",
+        "ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/dists/",
+        "ssh_username": "chaos",
+        "ssh_password": "chaos",
+        "disk_size": "16200",
+        "headless": "false"
+    },
+    "builders": [
+        {
+            "vm_name": "{{ user `name` }}",
+            "type": "virtualbox-iso",
+            "guest_os_type": "Ubuntu_64",
+            "iso_checksum_type": "sha256",
+            "iso_checksum_url": "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/images/SHA256SUMS",
+            "iso_urls": [ "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/images/netboot/mini.iso" ],
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_wait_timeout": "60m",
+            "headless": "{{ user `headless` }}",
+            "output_directory": "{{ user `name` }}-virtualbox-iso",
+            "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+            "hard_drive_interface": "sata",
+            "disk_size": "{{ user `disk_size` }}",
+            "vboxmanage": [
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--cpus",
+                "{{ user `cpus` }}"
+              ],
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--memory",
+                "{{ user `memory` }}"
+              ],
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--audiocontroller",
+                "hda"
+              ]
+            ],
+            "boot_wait": "5s",
+            "boot_command":
+            [
+              "<tab>",
+              "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+              "auto=true ",
+              "net.ifnames=0 ",
+              "hostname=localhost ",
+              "<enter>"
+            ],
+            "http_directory": "http"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "./install-virtualbox-guest-additions.sh"
+        },
+        {
+            "type": "ansible",
+            "playbook_file": "./ansible/site.yml",
+            "groups": [
+                "workers"
+            ],
+            "user": "{{user `USERNAME`}}",
+            "extra_arguments": [
+                "--extra-vars", "ansible_python_interpreter='/usr/bin/env python3'"
+            ],
+            "ansible_env_vars": [
+                "ANSIBLE_FORCE_COLOR=1"
+            ]
+        }
+    ]
+}

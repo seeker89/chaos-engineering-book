@@ -1,0 +1,5 @@
+---
+- hosts: workers
+  gather_facts: true
+  roles:
+    - {role: prerequisites, tags: ['prerequisites','base']}
