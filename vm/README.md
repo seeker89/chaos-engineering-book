@@ -27,6 +27,13 @@ If you'd like to build the VM from scratch, please follow these steps. These ins
 
 In order to launch packer, run `make build`. Note, that you will only need to dowload the iso image once, and that it will be placed in `./packer_cache`.
 
+
+## Starting the machine
+
+Once finished, packer will produce two files: .ovf and .vmdk.
+
+To import them, open Virtualbox and go to File -> Import Appliance. Follow the wizard and pick settings. If you're going to use the graphic mode, you should probably give it some graphic memory and turn hardware acceleration on.
+
 ## Credits
 
 Thanks to https://github.com/ruzickap/packer-templates for figuring out the preseed config for ubuntu desktops!
