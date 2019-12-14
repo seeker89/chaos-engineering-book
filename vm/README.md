@@ -34,6 +34,10 @@ Once finished, packer will produce two files: .ovf and .vmdk.
 
 To import them, open Virtualbox and go to File -> Import Appliance. Follow the wizard and pick settings. If you're going to use the graphic mode, you should probably give it some graphic memory and turn hardware acceleration on.
 
+### Login and password
+
+Use login `chaos` with password `chaos`. It should allow for passwordless sudo.
+
 ## Credits
 
 Thanks to https://github.com/ruzickap/packer-templates for figuring out the preseed config for ubuntu desktops!
