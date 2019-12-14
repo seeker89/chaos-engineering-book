@@ -3,4 +3,4 @@
 - name: Check out the book source code to home
   git:
     repo: 'https://github.com/seeker89/chaos-engineering-in-action.git'
-    dest: /home/ubuntu/src
+    dest: /home/chaos/src
