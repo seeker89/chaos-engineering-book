@@ -6,7 +6,7 @@ The easiest way to get started is to use the prebuild image available from relea
 
 ## Building from scratch
 
-If you'd like to build the VM from scratch, please follow these steps.
+If you'd like to build the VM from scratch, please follow these steps. These instructions were tested on macOS Mojave 10.14.5.
 
 ### Prerequisites
 
