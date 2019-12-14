@@ -61,6 +61,10 @@
     ],
     "provisioners": [
         {
+            "type": "shell",
+            "script": "./install-virtualbox-guest-additions.sh"
+        },
+        {
             "type": "ansible",
             "playbook_file": "./ansible/site.yml",
             "groups": [
