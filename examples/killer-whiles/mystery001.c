@@ -12,7 +12,7 @@ int main()
     while (1) {
 
         if ((allocated_block = (char*)malloc(block_size)) == NULL) {
-            printf("Couldn't malloc %d!\n", block_size);
+            //printf("Couldn't malloc %d!\n", block_size);
             if (block_size > 2*step){
                 block_size -= step;
             }
