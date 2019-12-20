@@ -5,21 +5,23 @@
 int main()
 {
     int wait = 1;
-    int block_size = 33554432; // 32Mb
+    int block_size = 64*1024*1024;
+    int step = 2*1024*1024;
     char * allocated_block;
     
     while (1) {
 
         if ((allocated_block = (char*)malloc(block_size)) == NULL) {
-            printf("Couldn't allocate!\n");
+            printf("Couldn't malloc %d!\n", block_size);
+            if (block_size > 2*step){
+                block_size -= step;
+            }
         } else {
-            // write data to our newly allocated memory to actually claim it
+            // slowly write data to our newly allocated memory to actually claim it and use some CPU
             for (int i=0; i < block_size; i++){
                 *(allocated_block + i) = 'Y';
             }
         }
-    
-        printf("Sleeping %ds\n", wait);
         sleep(wait); 
     }
 
