@@ -6,7 +6,7 @@ int main()
 {
     int wait = 1;
     int block_size = 64*1024*1024;
-    int step = 2*1024*1024;
+    int step = 1024*1024;
     char * allocated_block;
     
     while (1) {
