@@ -3,3 +3,4 @@ packages_to_install:
   - git
   - vim
   - curl
+  - nginx
