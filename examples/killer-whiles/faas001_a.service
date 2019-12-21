@@ -1,0 +1,5 @@
+[Unit]
+Description=FizzBuzz as a Service API prototype - instance A
+
+[Service]
+ExecStart=python3 -m http.server -p 8001 --directory /home/chaos/examples/killer-whiles/static
