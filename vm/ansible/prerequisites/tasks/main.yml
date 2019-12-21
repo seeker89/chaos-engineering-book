@@ -1,10 +1,11 @@
 ---
-- name: Install git
+- name: "Preinstall packages {{ item }}"
   become: true
   apt:
-    name: git
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  loop: "{{ packages_to_install }}"
 
 - name: Check out the book source code to home
   git:
