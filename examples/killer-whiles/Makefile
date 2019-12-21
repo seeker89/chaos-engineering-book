@@ -12,6 +12,6 @@ faas:
 	sudo systemctl daemon-reload
 	# link our fake load-balancer
 	sudo ln -f -s /home/chaos/src/examples/killer-whiles/nginx.loadbalancer.conf /etc/nginx/conf.d/nginx.loadbalancer.conf
-	sudo systemctl reload nginx
+	sudo systemctl restart nginx
 
 .PHONY: fass
