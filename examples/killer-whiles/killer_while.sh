@@ -8,7 +8,7 @@ do
     i=$[$i+1]
 done
 
-systemctl status faas001_a
+systemctl status faas001_a --no-pager
 
 # restart instance B a few times, spaced out by 1.5 second delays
 i="0"
@@ -20,4 +20,4 @@ do
     i=$[$i+1]
 done
 
-systemctl status faas001_b
+systemctl status faas001_b --no-pager
