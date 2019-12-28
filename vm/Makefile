@@ -1,6 +1,6 @@
 packer_bin ?= packer
 template_file ?= ./packer.json
-output_dir=./output-qemu/packer-qemu
+output_dir=./ubuntu-18.04-desktop-amd64-virtualbox-iso
 
 validate:
 	${packer_bin} validate ${template_file}
