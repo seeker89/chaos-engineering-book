@@ -40,3 +40,15 @@ docker_images_to_pull:
   - nginx:1.17.7-alpine
   - bloomberg/goldpinger:v3.0.0
   - alpine:3.11
+
+packages_to_remove:
+  - libreoffice-core
+  - libreoffice-calc
+  - libreoffice-writer
+  - libreoffice-draw
+  - libreoffice-help-en-gb
+  - libreoffice-help-en-us
+  - thunderbird
+  - firefox
+  - gnome-getting-started-docs
+  - example-content
