@@ -4,3 +4,4 @@ packages_to_install:
   - vim
   - curl
   - nginx
+  - apache2-utils
