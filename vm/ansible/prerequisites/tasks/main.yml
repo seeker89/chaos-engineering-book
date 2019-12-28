@@ -1,5 +1,5 @@
 ---
-- name: "Preinstall packages {{ item }}"
+- name: Preinstall packages
   become: true
   apt:
     name: "{{ item }}"
