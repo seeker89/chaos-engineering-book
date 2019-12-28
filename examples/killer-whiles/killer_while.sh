@@ -21,3 +21,9 @@ do
 done
 
 systemctl status faas001_b --no-pager
+
+echo "Waiting 10 seconds"
+sleep 10
+
+systemctl status faas001_a --no-pager
+systemctl status faas001_b --no-pager
