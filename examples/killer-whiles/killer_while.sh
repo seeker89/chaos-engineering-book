@@ -2,7 +2,7 @@
 i="0"
 while [ $i -le 5 ]
 do
-    echo "Restarting faas001_a ${i}th time"
+    echo "Killing faas001_a ${i}th time"
     ps auxf | grep killer-whiles | grep python | grep 8001 | awk '{system("sudo kill " $2)}'
     sleep 1.25
     i=$[$i+1]
@@ -14,7 +14,7 @@ systemctl status faas001_a --no-pager
 i="0"
 while [ $i -le 5 ]
 do
-    echo "Restarting faas001_b ${i}th time"
+    echo "Killing faas001_b ${i}th time"
     ps auxf | grep killer-whiles | grep python | grep 8002 | awk '{system("sudo kill " $2)}'
     sleep 1.25
     i=$[$i+1]
