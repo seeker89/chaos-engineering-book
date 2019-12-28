@@ -3,7 +3,7 @@ i="0"
 while [ $i -le 4 ]
 do
     echo "Restarting faas001_a ${i}th time"
-    sudo systemctl restart faas001_a
+    ps auxf | grep killer-whiles | grep python | grep 8001 | awk '{system("sudo kill " $2)}'
     sleep 1.5
     i=$[$i+1]
 done
@@ -13,7 +13,7 @@ i="0"
 while [ $i -le 4 ]
 do
     echo "Restarting faas001_b ${i}th time"
-    sudo systemctl restart faas001_b
+    ps auxf | grep killer-whiles | grep python | grep 8002 | awk '{system("sudo kill " $2)}'
     sleep 1.5
     i=$[$i+1]
 done
