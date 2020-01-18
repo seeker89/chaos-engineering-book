@@ -32,3 +32,12 @@
     exit 0
   args:
     creates: /usr/bin/kind
+
+- name: Install pumba
+  shell: |
+    curl -Lo ./pumba "https://github.com/alexei-led/pumba/releases/download/0.6.8/pumba_linux_amd64"
+    chmod +x ./pumba
+    sudo mv ./pumba /usr/bin/pumba
+    exit 0
+  args:
+    creates: /usr/bin/pumba
