@@ -68,3 +68,7 @@
   shell: |
     docker pull {{ item }}
   loop: "{{ docker_images_to_pull }}"
+
+- name: Disable docker starting on boot
+  shell: |
+    sudo systemctl disable docker
