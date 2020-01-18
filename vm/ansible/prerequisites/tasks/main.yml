@@ -38,6 +38,9 @@
     curl -Lo ./kubectl "https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl"
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/bin/kubectl
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
+    echo 'alias k=kubectl' >>~/.bashrc
+    echo 'complete -F __start_kubectl k' >>~/.bashrc
     exit 0
   args:
     creates: /usr/bin/kubectl
