@@ -72,3 +72,4 @@
 - name: Disable docker starting on boot
   shell: |
     sudo systemctl disable docker
+    sudo systemctl stop docker
