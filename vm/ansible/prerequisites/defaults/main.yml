@@ -11,3 +11,7 @@ packages_to_install:
 
 apt_repositories:
   - ppa:longsleep/golang-backports
+
+docker_images_to_pull:
+  - nginx:1.17.7-alpine
+  - bloomberg/goldpinger:2.0.0

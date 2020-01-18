@@ -63,3 +63,8 @@
     exit 0
   args:
     creates: /usr/bin/pumba
+
+- name: Pre-pull some images into docker
+  shell: |
+    docker pull {{ item }}
+  loop: "{{ docker_images_to_pull }}"
