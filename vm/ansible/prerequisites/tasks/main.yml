@@ -44,9 +44,9 @@
 
 - name: Get a kind cluster
   shell: |
-    kind create cluster
+    sudo kind create cluster
     kubectl cluster-info --context kind-kind
-    kind delete cluster
+    sudo kind delete cluster
     exit 0
 
 
