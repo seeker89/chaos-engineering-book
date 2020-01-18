@@ -42,11 +42,9 @@
   args:
     creates: /usr/bin/kubectl
 
-- name: Load kind images onto nodes
+- name: Allow insecure access to docker socket
   shell: |
-    sudo groupadd docker
-    sudo gpasswd -a $USER docker
-    sudo service docker.io restart
+    sudo setfacl -m user:$USER:rw /var/run/docker.sock
     exit 0
 
 - name: Load kind images onto nodes
