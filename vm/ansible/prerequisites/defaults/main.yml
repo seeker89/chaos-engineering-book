@@ -5,6 +5,8 @@ packages_to_install:
   - curl
   - nginx
   - apache2-utils
+  # ppa:longsleep/golang-backports
+  - golang-go
 
 apt_repositories:
   - ppa:longsleep/golang-backports
