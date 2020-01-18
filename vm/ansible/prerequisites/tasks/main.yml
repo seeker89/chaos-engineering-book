@@ -33,6 +33,15 @@
   args:
     creates: /usr/bin/kind
 
+- name: Install kubectl
+  shell: |
+    curl -Lo ./kubectl "https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/bin/kubectl
+    exit 0
+  args:
+    creates: /usr/bin/kubectl
+
 - name: Install pumba
   shell: |
     curl -Lo ./pumba "https://github.com/alexei-led/pumba/releases/download/0.6.8/pumba_linux_amd64"
