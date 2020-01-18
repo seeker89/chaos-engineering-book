@@ -42,6 +42,14 @@
   args:
     creates: /usr/bin/kubectl
 
+- name: Get a kind cluster
+  shell: |
+    kind create cluster
+    kubectl cluster-info --context kind-kind
+    kind delete cluster
+    exit 0
+
+
 - name: Install pumba
   shell: |
     curl -Lo ./pumba "https://github.com/alexei-led/pumba/releases/download/0.6.8/pumba_linux_amd64"
