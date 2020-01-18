@@ -42,13 +42,17 @@
   args:
     creates: /usr/bin/kubectl
 
-- name: Get a kind cluster
+- name: Load kind images onto nodes
   shell: |
-    sudo kind create cluster
-    kubectl cluster-info --context kind-kind
-    sudo kind delete cluster
+    sudo groupadd docker
+    sudo gpasswd -a $USER docker
+    sudo service docker.io restart
     exit 0
 
+- name: Load kind images onto nodes
+  shell: |
+    kind load
+    exit 0
 
 - name: Install pumba
   shell: |
