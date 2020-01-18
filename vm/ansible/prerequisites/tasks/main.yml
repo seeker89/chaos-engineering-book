@@ -1,5 +1,6 @@
 ---
 - name: Install apt repositories
+  become: true
   apt_repository:
     repo: "{{ item }}"
     state: present
