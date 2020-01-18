@@ -1,4 +1,10 @@
 ---
+- name: Install apt repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  loop: "{{ apt_repositories }}"
+
 - name: Preinstall packages
   become: true
   apt:
