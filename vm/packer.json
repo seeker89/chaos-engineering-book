@@ -22,7 +22,7 @@
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_wait_timeout": "60m",
             "headless": "{{ user `headless` }}",
-            "output_directory": "{{ user `name` }}-virtualbox-iso",
+            "output_directory": "{{ user `name` }}-virtualbox-output",
             "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
             "hard_drive_interface": "sata",
             "disk_size": "{{ user `disk_size` }}",
