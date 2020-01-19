@@ -1,6 +1,6 @@
 packer_bin ?= packer
 template_file ?= ./packer.json
-output_dir=./ubuntu-18.04-desktop-amd64-virtualbox-iso
+output_dir=./ubuntu-18.04-desktop-amd64-virtualbox-output
 
 validate:
 	${packer_bin} validate ${template_file}
