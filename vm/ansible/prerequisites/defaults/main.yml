@@ -5,3 +5,14 @@ packages_to_install:
   - curl
   - nginx
   - apache2-utils
+  - docker.io
+  - sysstat
+  # ppa:longsleep/golang-backports
+  - golang-go
+
+apt_repositories:
+  - ppa:longsleep/golang-backports
+
+docker_images_to_pull:
+  - nginx:1.17.7-alpine
+  - bloomberg/goldpinger:2.0.0

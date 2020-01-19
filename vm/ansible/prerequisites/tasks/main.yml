@@ -1,4 +1,11 @@
 ---
+- name: Install apt repositories
+  become: true
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  loop: "{{ apt_repositories }}"
+
 - name: Preinstall packages
   become: true
   apt:
@@ -16,3 +23,53 @@
   shell: make
   args:
     chdir: /home/chaos/src
+
+- name: Install kind
+  shell: |
+    curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/download/v0.7.0/kind-$(uname)-amd64"
+    chmod +x ./kind
+    sudo mv ./kind /usr/bin/kind
+    exit 0
+  args:
+    creates: /usr/bin/kind
+
+- name: Install kubectl
+  shell: |
+    curl -Lo ./kubectl "https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/bin/kubectl
+    echo 'source <(kubectl completion bash)' >>~/.bashrc
+    echo 'alias k=kubectl' >>~/.bashrc
+    echo 'complete -F __start_kubectl k' >>~/.bashrc
+    exit 0
+  args:
+    creates: /usr/bin/kubectl
+
+- name: Allow insecure access to docker socket
+  shell: |
+    sudo setfacl -m user:$USER:rw /var/run/docker.sock
+    exit 0
+
+- name: Load kind images onto nodes
+  shell: |
+    kind load
+    exit 0
+
+- name: Install pumba
+  shell: |
+    curl -Lo ./pumba "https://github.com/alexei-led/pumba/releases/download/0.6.8/pumba_linux_amd64"
+    chmod +x ./pumba
+    sudo mv ./pumba /usr/bin/pumba
+    exit 0
+  args:
+    creates: /usr/bin/pumba
+
+- name: Pre-pull some images into docker
+  shell: |
+    docker pull {{ item }}
+  loop: "{{ docker_images_to_pull }}"
+
+- name: Disable docker starting on boot
+  shell: |
+    sudo systemctl disable docker
+    sudo systemctl stop docker
