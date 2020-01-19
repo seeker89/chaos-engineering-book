@@ -6,6 +6,7 @@ packages_to_install:
   - nginx
   - apache2-utils
   - docker.io
+  - sysstat
   # ppa:longsleep/golang-backports
   - golang-go
 
