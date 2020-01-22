@@ -64,6 +64,7 @@
 - name: Allow insecure access to docker socket
   shell: |
     sudo setfacl -m user:$USER:rw /var/run/docker.sock
+    sudo usermod -aG docker $USER
     exit 0
 
 - name: Load kind images onto nodes
