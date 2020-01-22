@@ -52,6 +52,15 @@
   args:
     creates: /usr/bin/kubectl
 
+- name: Install pumba
+  shell: |
+    curl -Lo ./pumba "https://github.com/alexei-led/pumba/releases/download/0.6.8/pumba_linux_amd64"
+    chmod +x ./pumba
+    sudo mv ./pumba /usr/bin/pumba
+    exit 0
+  args:
+    creates: /usr/bin/pumba
+
 - name: Allow insecure access to docker socket
   shell: |
     sudo setfacl -m user:$USER:rw /var/run/docker.sock
