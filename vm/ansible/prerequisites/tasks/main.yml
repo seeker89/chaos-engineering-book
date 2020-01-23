@@ -69,7 +69,8 @@
 
 - name: Load kind images onto nodes
   shell: |
-    kind load
+    kind create cluster
+    kind delete cluster
     exit 0
 
 - name: Install pumba
