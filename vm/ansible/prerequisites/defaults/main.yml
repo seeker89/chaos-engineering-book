@@ -9,6 +9,7 @@ packages_to_install:
   - sysstat
   # ppa:longsleep/golang-backports
   - golang-go
+  - python3-pip
 
 apt_repositories:
   - ppa:longsleep/golang-backports
