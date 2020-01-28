@@ -7,7 +7,7 @@
         "ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/dists/",
         "ssh_username": "chaos",
         "ssh_password": "chaos",
-        "disk_size": "16200",
+        "disk_size": "32400",
         "headless": "false"
     },
     "builders": [
