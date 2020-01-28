@@ -10,6 +10,8 @@ packages_to_install:
   # ppa:longsleep/golang-backports
   - golang-go
   - python3-pip
+  - stress
+
 
 apt_repositories:
   - ppa:longsleep/golang-backports
