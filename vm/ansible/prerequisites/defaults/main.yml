@@ -11,6 +11,7 @@ packages_to_install:
   - golang-go
   - python3-pip
   - stress
+  - bpfcc-tools
 
 
 apt_repositories:
