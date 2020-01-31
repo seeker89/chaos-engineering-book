@@ -91,3 +91,9 @@
   shell: |
     sudo systemctl disable docker
     sudo systemctl stop docker
+
+  # to avoid surprises, always overcommit the memory
+- name: Always overcommit the memory
+  become: true
+  shell: |
+    echo 1 > /proc/sys/vm/overcommit_memory
