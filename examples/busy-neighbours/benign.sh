@@ -8,5 +8,5 @@ sleep 20
 while :
 do
     stress --cpu 2 -m 1 -d 1 --timeout 30 2>&1 > /dev/null
-	sleep 5
+    sleep 5
 done
