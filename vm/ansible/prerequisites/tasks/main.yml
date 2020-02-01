@@ -107,5 +107,7 @@
     cd Python-3.7.0
     ./configure --with-dtrace
     make
-    cp python ~/python3.7
+    make test
+    sudo make install
+    cd ..
     rm -rf Python-3.7.0 Python-3.7.0.tgz
