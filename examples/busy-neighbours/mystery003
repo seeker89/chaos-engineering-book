@@ -8,6 +8,7 @@ echo "Press [CTRL+C] to stop.."
 # do the actual work
 while :
 do
+    echo "Calculating pi's 3000 digits..."
     time echo "scale=3000; 4*a(1)" | bc -l | head -n1
 	sleep 5
 done
