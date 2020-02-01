@@ -12,6 +12,8 @@ packages_to_install:
   - python3-pip
   - stress
   - bpfcc-tools
+  # dtrace
+  - systemtap-sdt-dev
 
 
 apt_repositories:

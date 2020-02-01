@@ -97,3 +97,15 @@
   become: true
   shell: |
     echo 1 > /proc/sys/vm/overcommit_memory
+
+- name: Prebuild python 3.7 from source with dtrace support
+  become: make
+  shell: |
+    cd ~
+    curl -o Python-3.7.0.tgz https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
+    tar -xzf Python-3.7.0.tgz
+    cd Python-3.7.0
+    ./configure --with-dtrace
+    make
+    cp python ~/python3.7
+    rm -rf Python-3.7.0 Python-3.7.0.tgz
