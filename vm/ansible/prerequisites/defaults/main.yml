@@ -14,6 +14,8 @@ packages_to_install:
   - bpfcc-tools
   # dtrace
   - systemtap-sdt-dev
+  - zlib1g-dev
+  - libffi-dev
 
 
 apt_repositories:
