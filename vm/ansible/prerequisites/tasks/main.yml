@@ -128,6 +128,11 @@
     make
     #make test
     sudo make install
-    cp python ~/python3.7
+    cp ./python ~/python3.7
     cd ..
     rm -rf Python-3.7.0 Python-3.7.0.tgz
+
+- name: Install pip dependencies
+  become: true
+  pip:
+    name: freegames
