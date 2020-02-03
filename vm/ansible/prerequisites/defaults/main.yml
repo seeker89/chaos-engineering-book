@@ -12,6 +12,16 @@ packages_to_install:
   - python3-pip
   - stress
   - bpfcc-tools
+  # dtrace
+  - systemtap-sdt-dev
+  - zlib1g-dev
+  - libffi-dev
+  # cgroups utils
+  - cgroup-bin
+  - cgroup-lite
+  - cgroup-tools
+  - cgroupfs-mount
+  - libcgroup1
 
 
 apt_repositories:
