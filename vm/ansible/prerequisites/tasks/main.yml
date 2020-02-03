@@ -118,7 +118,6 @@
     sudo apt-get install -y python3-dev
     sudo apt-get install -y python3-setuptools
     sudo apt-get install -y wget
-    sudo apt-get install -y tk-dev
     # download
     cd ~
     curl -o Python-3.7.0.tgz https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
@@ -128,9 +127,6 @@
     make
     #make test
     sudo make install
-    cp ./python ~/python3.7
-    cd ..
-    rm -rf Python-3.7.0 Python-3.7.0.tgz
 
 - name: Install pip dependencies
   become: true
