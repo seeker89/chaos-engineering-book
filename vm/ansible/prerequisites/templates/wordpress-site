@@ -1,0 +1,13 @@
+Alias /blog /usr/share/wordpress
+<Directory /usr/share/wordpress>
+    Options FollowSymLinks
+    AllowOverride Limit Options FileInfo
+    DirectoryIndex index.php
+    Order allow,deny
+    Allow from all
+</Directory>
+<Directory /usr/share/wordpress/wp-content>
+    Options FollowSymLinks
+    Order allow,deny
+    Allow from all
+</Directory>
