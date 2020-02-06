@@ -22,6 +22,12 @@ packages_to_install:
   - cgroup-tools
   - cgroupfs-mount
   - libcgroup1
+  # wordpress
+  - wordpress
+  - php
+  - libapache2-mod-php
+  - mysql-server
+  - php-mysql
 
 
 apt_repositories:
