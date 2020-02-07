@@ -141,6 +141,7 @@
     dest: /etc/apache2/sites-available/wordpress.conf
 
 - name: Create Wordpress DB config
+  become: true
   template:
     src: config-localhost.php
     dest: /etc/wordpress/config-localhost.php
