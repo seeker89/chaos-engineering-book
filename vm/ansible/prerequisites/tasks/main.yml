@@ -151,7 +151,7 @@
   become: true
   shell: |
     a2ensite wordpress
-    service apache2 reload
+    service apache2 reload || true
 
 - name: Create the wordpress database
   become: true
