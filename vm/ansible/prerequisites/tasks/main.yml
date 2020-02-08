@@ -136,6 +136,7 @@
 
 # WORDPRESS, APACHE
 - name: Create a Wordpress site for apache
+  become: true
   template:
     src: wordpress-site
     dest: /etc/apache2/sites-available/wordpress.conf
