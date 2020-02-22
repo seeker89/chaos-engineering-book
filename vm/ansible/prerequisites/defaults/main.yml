@@ -28,6 +28,7 @@ packages_to_install:
   - libapache2-mod-php
   - mysql-server
   - php-mysql
+  - net-tools
 
 
 apt_repositories:
