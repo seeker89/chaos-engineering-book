@@ -163,6 +163,11 @@
     quit
     EOF
 
+- name: Make sure mysql database listens on all interfaces
+  lineinfile:
+    path: /lib/systemd/system/mysql.service
+    regexp: '^ExecStart='
+    line: 'ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/run/mysqld/mysqld.pid --bind-address=0.0.0.0 --port=3306'
 
 # Stop services from starting on boot time
 - name: Disable auto-boot services
