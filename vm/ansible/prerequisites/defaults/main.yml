@@ -23,6 +23,7 @@ packages_to_install:
   - cgroupfs-mount
   - libcgroup1
   # wordpress
+  - apache2
   - wordpress
   - php
   - libapache2-mod-php
