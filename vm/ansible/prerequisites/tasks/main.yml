@@ -133,19 +133,6 @@
   pip:
     name: freegames
 
-# Stop services from starting on boot time
-- name: Disable auto-boot services
-  become: true
-  service:
-    name: "{{ item }}"
-    state: stopped
-    enabled: false
-  loop:
-    - apache2
-    - nginx
-    - mysql
-
-
 # WORDPRESS, APACHE
 - name: Create a Wordpress site for apache
   become: true
@@ -175,3 +162,16 @@
     FLUSH PRIVILEGES;
     quit
     EOF
+
+
+# Stop services from starting on boot time
+- name: Disable auto-boot services
+  become: true
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop:
+    - apache2
+    - nginx
+    - mysql
