@@ -164,6 +164,7 @@
     EOF
 
 - name: Make sure mysql database listens on all interfaces
+  become: true
   lineinfile:
     path: /lib/systemd/system/mysql.service
     regexp: '^ExecStart='
