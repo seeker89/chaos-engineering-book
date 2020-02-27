@@ -144,7 +144,7 @@
   become: true
   template:
     src: config-localhost.php
-    dest: /etc/wordpress/config-localhost.php
+    dest: /etc/wordpress/config-127.0.0.1.php
 
 - name: Enable the wordpress site in apache
   become: true
