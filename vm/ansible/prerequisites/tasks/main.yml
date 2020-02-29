@@ -132,3 +132,52 @@
   become: true
   pip:
     name: freegames
+
+# WORDPRESS, APACHE
+- name: Create a Wordpress site for apache
+  become: true
+  template:
+    src: wordpress-site
+    dest: /etc/apache2/sites-available/wordpress.conf
+
+- name: Create Wordpress DB config
+  become: true
+  template:
+    src: config-localhost.php
+    dest: /etc/wordpress/config-127.0.0.1.php
+
+- name: Enable the wordpress site in apache
+  become: true
+  shell: |
+    a2ensite wordpress
+    service apache2 reload || true
+
+- name: Create the wordpress database
+  become: true
+  shell: |
+    cat <<EOF | sudo mysql -u root
+    CREATE DATABASE wordpress;
+    CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'wordpress';
+    GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost;
+    FLUSH PRIVILEGES;
+    quit
+    EOF
+
+- name: Make sure mysql database listens on all interfaces
+  become: true
+  lineinfile:
+    path: /lib/systemd/system/mysql.service
+    regexp: '^ExecStart='
+    line: 'ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/run/mysqld/mysqld.pid --bind-address=0.0.0.0 --port=3306'
+
+# Stop services from starting on boot time
+- name: Disable auto-boot services
+  become: true
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop:
+    - apache2
+    - nginx
+    - mysql
