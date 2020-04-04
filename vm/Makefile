@@ -11,5 +11,6 @@ build: validate
 
 package:
 	zip -s 2g chaos-engineering-in-action-vm-$(shell git rev-parse HEAD).zip ${output_dir}/*
+	shasum -a 256 chaos-engineering-in-action-vm-$(shell git rev-parse HEAD)*
 
 .PHONY: validate build package
