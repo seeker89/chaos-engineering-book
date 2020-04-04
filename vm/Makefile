@@ -14,5 +14,6 @@ build: validate
 package:
 	zip -s 2g ${vm_name}.zip ${output_dir}/*
 	shasum -a 256 ${vm_name}* | tee ${vm_name}.sha256
+	ls -alh ${vm_name}
 
 .PHONY: validate build package
