@@ -9,5 +9,7 @@ build: validate
 	${packer_bin} build -on-error=ask ${template_file}
 	ls -al ${output_dir}
 
+package:
+	zip -s 2g chaos-engineering-in-action-vm-$(shell git rev-parse HEAD).zip ${output_dir}/*
 
-.PHONY: validate build
+.PHONY: validate build package
