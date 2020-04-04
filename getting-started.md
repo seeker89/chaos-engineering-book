@@ -5,7 +5,7 @@
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice
   - Confirm checksums with `cat *.sha256 | shasum -a 256 -c`
-  - Concatenate the partial files `cat *.zip.* > vm.zip`
+  - Concatenate the partial files `cat chaos-engineering-VM*.z* > vm.zip`
   - Unzip it `unzip vm.zip`
 - Import the VM image into VirtualBox:
   - In VirtualBox, click `File -> Import Appliance`
