@@ -3,7 +3,10 @@
 ## TL;DR
 
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- Download the image files to a location of your choice
+- Download [the lastest release of the image]() to a location of your choice
+  - Confirm checksums with `cat *.checksums | shasum -a 256 -c`
+  - Concatenate the partial files `cat *.zip.* > vm.zip`
+  - Unzip it `unzip vm.zip`
 - Import the VM image into VirtualBox:
   - In VirtualBox, click `File -> Import Appliance`
   - Pick the VM image file you downloaded

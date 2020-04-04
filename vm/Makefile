@@ -13,6 +13,6 @@ build: validate
 
 package:
 	zip -s 2g ${vm_name}.zip ${output_dir}/*
-	shasum -a 256 ${vm_name}*
+	shasum -a 256 ${vm_name}* | tee ${vm_name}.checksums
 
 .PHONY: validate build package
