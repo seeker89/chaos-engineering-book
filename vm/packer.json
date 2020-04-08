@@ -3,6 +3,7 @@
         "name": "ubuntu-18.04-desktop-amd64",
         "cpus": "2",
         "memory": "4096",
+        "vram": "64",
         "ubuntu_codename": "disco",
         "ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/dists/",
         "ssh_username": "chaos",
@@ -44,6 +45,18 @@
                 "{{ .Name }}",
                 "--audiocontroller",
                 "hda"
+              ],
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--clipboard-mode",
+                "bidirectional"
+              ],
+              [
+                "modifyvm",
+                "{{ .Name }}",
+                "--vram",
+                "{{ user `vram` }}"
               ]
             ],
             "boot_wait": "5s",

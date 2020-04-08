@@ -3,18 +3,30 @@
 ## TL;DR
 
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice
-  - Confirm checksums with `cat *.sha256 | shasum -a 256 -c`
-  - Concatenate the partial files `cat chaos-engineering-VM*.z* > vm.zip`
-  - Unzip it `unzip vm.zip`
+- Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice (make sure the files are all in the same directory)
+- Unzip the file
+  - For Linux and MacOS
+    - Confirm checksums with `cat *.sha256 | shasum -a 256 -c`
+    - Concatenate the partial files `cat chaos-engineering-VM*.z* > vm.zip`
+    - Unzip it `unzip vm.zip`
+  - For Windows
+    - Unzip the `.zip` file - your zip program should automatically find all files
+  - There should be two files in a new subfolder: a `.ovf` and `.vmdk` one
 - Import the VM image into VirtualBox:
   - In VirtualBox, click `File -> Import Appliance`
-  - Pick the VM image file you downloaded
+  - Pick the VM image file (the `.ovf` file) you downloaded and unzipped
   - Follow the wizard until completion
+  - Start the VM and log in. The username and password are both `chaos`
+
+
+## Configuration
+
+There is plenty of options you might want to tweak to fit your setup. Some of the recommended ones:
+
 - Configure sane defaults for the VM:
   - Right click your new VM and choose settings
-  - In `General -> Advanced -> Shared Clipboard` check `Bidirectional`
-  - In `System -> Motherboard` choose `4096 MB` of `Base Memory`
-  - In `Display -> Video Memory` choose at least 64MB
+  - In `General -> Advanced -> Shared Clipboard` check `Bidirectional` (default)
+  - In `System -> Motherboard` choose `4096 MB` of `Base Memory` (default)
+  - In `Display -> Video Memory` choose at least 64MB (default)
   - In `Display -> Remote Display` uncheck `Enable Server`
-- Start the VM and log in. The username and password are both `chaos`
+  - In `Display -> Graphics Controller` choose what best suits your host OS
