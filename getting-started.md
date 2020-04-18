@@ -10,7 +10,7 @@
     - Unzip it `unzip chaos-engineering*.zip`
     - (optional) If your version of unzip complains, try concatenating them first `cat chaos-engineering-VM*.z* > vm.zip`
   - Windows
-    - Confirm the checksums. On Windows 10, you should be able to run `CertUtil -hashfile C:\<hashfile>.sha256 SHA256`
+    - Confirm the checksums. On Windows 10, you should be able to run `CertUtil -hashfile C:\<hashfile>.sha256 SHA256`. Or use [Cygwin](http://www.cygwin.com/).
     - Unzip the `.zip` file - your zip program (like 7-zip) should automatically find all files
   - There should be two files in a new subfolder: a `.ovf` and `.vmdk` one
 - Import the VM image into VirtualBox:
