@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # restart instance A a few times, spaced out by 1.5 second delays
 i="0"
 while [ $i -le 5 ]
