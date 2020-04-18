@@ -5,11 +5,12 @@
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice (make sure the files are all in the same directory)
 - Unzip the downloaded files
-  - For Linux and MacOS
+  - MacOS/Linux
     - Confirm checksums with `cat *.sha256 | shasum -a 256 -c`
-    - Concatenate the partial files `cat chaos-engineering-VM*.z* > vm.zip`
-    - Unzip it `unzip vm.zip`
-  - For Windows
+    - Unzip it `unzip chaos-engineering*.zip`
+    - (optional) If your version of unzip complains, try concatenating them first `cat chaos-engineering-VM*.z* > vm.zip`
+  - Windows
+    - Confirm the checksums. On Windows 10, you should be able to run `CertUtil -hashfile C:\<hashfile>.sha256 SHA256`
     - Unzip the `.zip` file - your zip program (like 7-zip) should automatically find all files
   - There should be two files in a new subfolder: a `.ovf` and `.vmdk` one
 - Import the VM image into VirtualBox:
