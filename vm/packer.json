@@ -49,7 +49,7 @@
               [
                 "modifyvm",
                 "{{ .Name }}",
-                "--clipboard-mode",
+                "--clipboard",
                 "bidirectional"
               ],
               [
