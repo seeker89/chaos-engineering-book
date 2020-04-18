@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Listing backend services"
 ps auxf | grep killer-whiles | grep python
 echo
