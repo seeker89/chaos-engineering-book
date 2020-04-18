@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # print the command
 set -o xtrace
 
