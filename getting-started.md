@@ -10,7 +10,7 @@
     - Concatenate the partial files `cat chaos-engineering-VM*.z* > vm.zip`
     - Unzip it `unzip vm.zip`
   - For Windows
-    - Unzip the `.zip` file - your zip program should automatically find all files
+    - Unzip the `.zip` file - your zip program (like 7-zip) should automatically find all files
   - There should be two files in a new subfolder: a `.ovf` and `.vmdk` one
 - Import the VM image into VirtualBox:
   - In VirtualBox, click `File -> Import Appliance`
