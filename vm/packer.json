@@ -1,6 +1,6 @@
 {
     "variables": {
-        "name": "ubuntu-18.04-desktop-amd64",
+        "name": "chaos-ubuntu-18.04-amd64",
         "cpus": "2",
         "memory": "4096",
         "vram": "64",
