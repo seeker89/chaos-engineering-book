@@ -6,7 +6,7 @@
 - Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice (make sure the files are all in the same directory)
 - Unzip the downloaded files
   - MacOS/Linux
-    - Confirm checksums of downloaded archives with `shasum -a 256 -c parts.sha256`
+    - (optional) Confirm checksums of downloaded parts with `shasum -a 256 -c parts.sha256`
     - Concatenate the parts into a single archive `cat chaos-engineering-VM*.z* > vm.zip`
     - Unzip it `unzip vm.zip`
     - Confirm the resulting VM image is intact `shasum -a 256 -c chaos-engineering-VM.sha256`
