@@ -12,9 +12,9 @@ build: validate
 	ls -al ${output_dir}
 
 package:
-	(cd ${output_dir} && shasum -a 256 * | tee CHECKSUMS.sha256)
+	shasum -a 256 ${output_dir}/* | tee chaos-engineering-VM.sha256
 	zip -s 1g -sv ${vm_name}.zip ${output_dir}/*
-	shasum -a 256 ${vm_name}* | tee ${vm_name}.sha256
+	shasum -a 256 ${vm_name}* | tee parts.sha256
 	ls -alh ${vm_name}*
 
 .PHONY: validate build package
