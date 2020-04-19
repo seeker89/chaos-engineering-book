@@ -1,6 +1,6 @@
 packer_bin ?= packer
 template_file ?= ./packer.json
-output_dir=./ubuntu-18.04-desktop-amd64-virtualbox-output
+output_dir=./chaos-engineering-VM
 revision ?= $(shell git rev-parse HEAD)
 vm_name ?= chaos-engineering-VM-${revision}
 
@@ -12,8 +12,9 @@ build: validate
 	ls -al ${output_dir}
 
 package:
-	zip -s 1g ${vm_name}.zip ${output_dir}/*
-	shasum -a 256 ${vm_name}* | tee ${vm_name}.sha256
+	shasum -a 256 ${output_dir}/* | tee chaos-engineering-VM.sha256
+	zip -s 1g -sv ${vm_name}.zip ${output_dir}/*
+	shasum -a 256 ${vm_name}* | tee parts.sha256
 	ls -alh ${vm_name}*
 
 .PHONY: validate build package
