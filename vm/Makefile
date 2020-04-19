@@ -1,6 +1,6 @@
 packer_bin ?= packer
 template_file ?= ./packer.json
-output_dir=./ubuntu-18.04-desktop-amd64-virtualbox-output
+output_dir=./chaos-engineering-VM
 revision ?= $(shell git rev-parse HEAD)
 vm_name ?= chaos-engineering-VM-${revision}
 
