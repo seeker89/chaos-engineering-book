@@ -12,7 +12,8 @@ build: validate
 	ls -al ${output_dir}
 
 package:
-	zip -s 1g ${vm_name}.zip ${output_dir}/*
+	(cd ${output_dir} && shasum -a 256 * | tee CHECKSUMS.sha256)
+	zip -s 1g -sv ${vm_name}.zip ${output_dir}/*
 	shasum -a 256 ${vm_name}* | tee ${vm_name}.sha256
 	ls -alh ${vm_name}*
 
