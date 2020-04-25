@@ -181,3 +181,8 @@
     - apache2
     - nginx
     - mysql
+
+- name: Disable screen locking in gnome
+  become: false
+  shell: |
+    gsettings set org.gnome.desktop.session idle-delay 0
