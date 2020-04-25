@@ -37,4 +37,4 @@ apt_repositories:
 
 docker_images_to_pull:
   - nginx:1.17.7-alpine
-  - bloomberg/goldpinger:2.0.0
+  - bloomberg/goldpinger:v3.0.0
