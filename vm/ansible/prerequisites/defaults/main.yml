@@ -5,7 +5,7 @@ packages_to_install:
   - curl
   - nginx
   - apache2-utils
-  - docker.io
+  - docker.io==19.03.6
   - sysstat
   # ppa:longsleep/golang-backports
   - golang-go
