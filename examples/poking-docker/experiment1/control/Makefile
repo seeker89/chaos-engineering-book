@@ -1,4 +1,4 @@
-tag =? experiment1-control
+tag ?= experiment1-control
 
 build:
 	docker build -t ${tag} .
