@@ -2,7 +2,7 @@
 set +x
 
 export NEW_FILESYSTEM_ROOT=${1:-~/new_filesystem}
-export TOOLS="bash ls cd pwd mkdir ps touch rm cat vim"
+export TOOLS="bash ls pwd mkdir ps touch rm cat vim"
 
 echo "Step 1. Create a new folder for our new root"
 mkdir $NEW_FILESYSTEM_ROOT
