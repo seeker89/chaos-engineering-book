@@ -6,4 +6,7 @@ build:
 run:
 	docker run --rm -ti ${tag}
 
-.PHONY: build run
+run2:
+	docker run --storage-opt size=1g --rm -ti ${tag}
+
+.PHONY: build run run2
