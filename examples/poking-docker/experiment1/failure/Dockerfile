@@ -1,5 +1,5 @@
 FROM ubuntu:focal-20200423
 
-COPY run.sh /run.sh
+COPY consume.sh /consume.sh
 
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT ["/consume.sh"]
