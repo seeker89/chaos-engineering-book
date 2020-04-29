@@ -13,6 +13,14 @@
     wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
     sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
 
+- name: Remove some packages
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: absent
+    update_cache: yes
+  loop: "{{ packages_to_remove }}"
+
 - name: Preinstall packages
   become: true
   apt:

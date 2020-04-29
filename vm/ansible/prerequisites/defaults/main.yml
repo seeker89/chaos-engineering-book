@@ -1,4 +1,7 @@
 ---
+apt_repositories:
+  - ppa:longsleep/golang-backports
+
 packages_to_install:
   - git
   - vim
@@ -31,9 +34,16 @@ packages_to_install:
   - php-mysql
   - net-tools
 
-
-apt_repositories:
-  - ppa:longsleep/golang-backports
+packages_to_remove:
+  - libreoffice-core
+  - libreoffice-calc
+  - libreoffice-writer
+  - libreoffice-draw
+  - libreoffice-help-en-gb
+  - libreoffice-help-en-us
+  - thunderbird
+  - gnome-getting-started-docs
+  - example-content
 
 docker_images_to_pull:
   - ubuntu:focal-20200423
