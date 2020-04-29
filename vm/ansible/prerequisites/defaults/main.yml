@@ -49,6 +49,5 @@ packages_to_remove:
   - libreoffice-help-en-gb
   - libreoffice-help-en-us
   - thunderbird
-  - firefox
   - gnome-getting-started-docs
   - example-content
