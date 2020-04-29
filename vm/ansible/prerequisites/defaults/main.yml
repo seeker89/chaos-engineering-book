@@ -1,4 +1,7 @@
 ---
+apt_repositories:
+  - ppa:longsleep/golang-backports
+
 packages_to_install:
   - git
   - vim
@@ -31,16 +34,6 @@ packages_to_install:
   - php-mysql
   - net-tools
 
-
-apt_repositories:
-  - ppa:longsleep/golang-backports
-
-docker_images_to_pull:
-  - ubuntu:focal-20200423
-  - nginx:1.17.7-alpine
-  - bloomberg/goldpinger:v3.0.0
-  - alpine:3.11
-
 packages_to_remove:
   - libreoffice-core
   - libreoffice-calc
@@ -51,3 +44,9 @@ packages_to_remove:
   - thunderbird
   - gnome-getting-started-docs
   - example-content
+
+docker_images_to_pull:
+  - ubuntu:focal-20200423
+  - nginx:1.17.7-alpine
+  - bloomberg/goldpinger:v3.0.0
+  - alpine:3.11
