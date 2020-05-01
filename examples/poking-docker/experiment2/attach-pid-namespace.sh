@@ -1,5 +1,5 @@
 #! /bin/bash
-export CONTAINER_PID=$(docker inspect -f '{{ .State.Pid }}' experiment2)
+CONTAINER_PID=$(docker inspect -f '{{ .State.Pid }}' experiment2)
 sudo nsenter \
     --pid \
     --target $CONTAINER_PID \
