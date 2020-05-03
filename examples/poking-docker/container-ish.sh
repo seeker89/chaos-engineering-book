@@ -7,9 +7,9 @@ bash $current_dir/new-filesystem.sh $FILESYSTEM_NAME
 cd $FILESYSTEM_NAME
 
 # Step 2: create a new pid namespace, and start a chrooted bash session
-unshare \
-    --pid \
+sudo unshare \
     --fork \
+    --pid \
     --mount-proc \
     chroot . \
-    /bin/bash
+    /bin/bash -c "mkdir /proc && /bin/mount -t proc proc /proc && exec /bin/bash"
