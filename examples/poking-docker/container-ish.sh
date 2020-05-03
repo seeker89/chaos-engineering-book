@@ -11,4 +11,4 @@ sudo unshare \
     --fork \
     --pid \
     chroot . \
-    /bin/bash -c "mkdir /proc && /bin/mount -t proc proc /proc && exec /bin/bash"
+    /bin/bash -c "mkdir -p /proc && /bin/mount -t proc proc /proc && exec /bin/bash"
