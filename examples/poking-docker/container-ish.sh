@@ -6,13 +6,10 @@ FILESYSTEM_NAME=${1:-container-attempt-2}
 bash $current_dir/new-filesystem.sh $FILESYSTEM_NAME
 cd $FILESYSTEM_NAME
 
-# Step 2: mount /proc
-mkdir -p proc
-mount --rbind /proc proc
-
-# Step 3: createa new pid namespace, and start a chrooted bash session
+# Step 2: create a new pid namespace, and start a chrooted bash session
 unshare \
     --pid \
     --fork \
+    --mount-proc \
     chroot . \
     /bin/bash
