@@ -10,6 +10,5 @@ cd $FILESYSTEM_NAME
 sudo unshare \
     --fork \
     --pid \
-    --mount-proc \
     chroot . \
     /bin/bash -c "mkdir /proc && /bin/mount -t proc proc /proc && exec /bin/bash"
