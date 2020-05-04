@@ -1,9 +1,9 @@
-tag ?= experiment3
+tag ?= stressful
 
 build:
 	docker build -t ${tag} .
 
 run:
-	docker run --rm --name experiment3 -ti ${tag}
+	docker run --rm --name stressful -ti ${tag}
 
 .PHONY: build run
