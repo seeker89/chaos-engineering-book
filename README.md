@@ -10,6 +10,14 @@ Source code accompanying [Chaos Engineering: Crash test your applications](https
 - [build a custom VM image](./vm)
 - [source code for examples divided by chapters](./examples)
 
+## Free chapters!
+
+First three chapters are available for free during the early access:
+
+  - [Chapter 1: Into the world of chaos engineering](https://livebook.manning.com/book/chaos-engineering/chapter-1?origin=github.com)
+  - [Chapter 2: First cup of Chaos & blast radius](https://livebook.manning.com/book/chaos-engineering/chapter-2?origin=github.com)
+  - [Chapter 3: Observability](https://livebook.manning.com/book/chaos-engineering/chapter-3?origin=github.com)
+
 ## Contact
 
 For erratas, please file an issue. For inquires about public speaking or writing, reach out to `mikolaj at pawlikowski dot pl`.
