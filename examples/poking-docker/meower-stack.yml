@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  ghost:
+    image: ghost:3.14.0-alpine
+    ports:
+      - 8080:2368
+    environment:
+      # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: notverysafe
+      database__connection__database: ghost
+      server__host: "0.0.0.0"
+      server__port: "2368"
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: notverysafe
