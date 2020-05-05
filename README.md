@@ -1,4 +1,4 @@
-# Chaos Engineering book
+# Chaos Engineering: Crash test your applications
 
 Source code accompanying [Chaos Engineering: Crash test your applications](https://www.manning.com/books/chaos-engineering?a_aid=chaos&a_bid=d3243216) book (now available in early access!)
 
