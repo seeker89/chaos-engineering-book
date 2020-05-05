@@ -14,7 +14,7 @@ echo 100000 | sudo tee /sys/fs/cgroup/cpu/$UUID/cpu.cfs_period_us
 echo $CPU_LIMIT | sudo tee /sys/fs/cgroup/cpu/$UUID/cpu.cfs_quota_us
 
 echo "Step C: prepare the folder structure to be our chroot"
-bash $CURRENT_DIRECTORY/new-filesystem.sh $UUID && cd $UUID
+bash $CURRENT_DIRECTORY/new-filesystem.sh $UUID > /dev/null && cd $UUID
 
 echo "Step D: put the current process into the cgroups"
 echo $$ | sudo tee /sys/fs/cgroup/{cpu,memory}/$UUID/tasks
