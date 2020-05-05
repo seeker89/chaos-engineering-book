@@ -3,7 +3,7 @@ services:
   ghost:
     image: ghost:3.14.0-alpine
     ports:
-      - 8368:2368
+      - 8080:2368
     environment:
       # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
       database__client: mysql
