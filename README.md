@@ -9,3 +9,9 @@ Source code accompanying [Chaos Engineering: Crash test your applications](https
 - [getting started with the VM](./getting-started.md)
 - [build a custom VM image](./vm)
 - [source code for examples divided by chapters](./examples)
+
+## Contact
+
+For erratas, please file an issue. For inquires about public speaking or writing, reach out to `mikolaj at pawlikowski dot pl`.
+
+[twitter](https://twitter.com/mikopawlikowski) [linkedin](https://www.linkedin.com/in/mikolajpawlikowski/)
