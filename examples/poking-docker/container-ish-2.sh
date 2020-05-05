@@ -20,7 +20,7 @@ cd $FILESYSTEM_NAME
 echo "Step D: put the current process into the cgroups"
 echo $$ | sudo tee /sys/fs/cgroup/{cpu,memory}/$UUID/tasks
 
-echo "Step E: start our namespaced chroot"
+echo "Step E: start our namespaced chroot container-ish: $UUID"
 sudo unshare \
     --fork \
     --pid \
