@@ -1,4 +1,6 @@
 #! /bin/bash
+set +x
+
 CURRENT_DIRECTORY="$(dirname "${0}")"
 
 CPU_LIMIT=${1:-50000}
