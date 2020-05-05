@@ -14,6 +14,8 @@ services:
       database__connection__user: root
       database__connection__password: notverysafe
       database__connection__database: ghost
+      server__host: "0.0.0.0"
+      server__port: "2368"
 
   db:
     image: mysql:5.7
