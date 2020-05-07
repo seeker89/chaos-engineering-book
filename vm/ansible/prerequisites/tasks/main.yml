@@ -194,3 +194,8 @@
   become: false
   shell: |
     gsettings set org.gnome.desktop.session idle-delay 0
+
+
+- name: Retag ubuntu:focal-20200423 as ubuntu:focal
+  shell: |
+    docker tag ubuntu:focal-20200423 ubuntu:focal
