@@ -26,7 +26,7 @@ BUZZWORDS = sorted([
     "cloud",
     "enterprise_ready",
     "grpc",
-    "4g",
+    "new_4g",
     "organic",
     "free_range",
     "saas",
