@@ -24,14 +24,14 @@ FUNC_TEMPLATE = """
 #include "{next_name}.h"
 
 ssize_t {name}(int fd) {{
-    int a = {val1}, {name}_b = {val2}, {name}_{name} = {val3};
+    char a = {val1}, {name}_b = {val2}, {name}_{name} = {val3};
     for (int i = 0; i < {offset}; i++){{
-        a--; {name}_b--;
+        a++; {name}_b++;
     }}
-    // not sure why, this didn't work with --
+    // not sure why, this didn't work with ++
     // TODO check why it wasn't working 
-    {name}_{name} += -1 * {offset};
-    int size = 5;
+    {name}_{name} -= {offset} * -1;
+    char size = '3';
     write(fd, &size, sizeof(size));
     char newline[] = "\\r\\n";
     write(fd, newline, sizeof(newline)-1);
