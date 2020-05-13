@@ -74,7 +74,8 @@ def generate_all(names, content):
     index = 0
     next_index = 1
     generation = 0
-    while offset < len(content):
+    next_name = ""
+    while offset + 6 < len(content):
         name = "{}_{}".format(names[index], generation)
         next_index += 1
         if next_index >= len(names):
@@ -88,5 +89,11 @@ def generate_all(names, content):
             f.write(body)
         index = next_index
         offset += 3
+    # handle the last one
+    header, body = generate_func(next_name, None, content, offset)
+    with open("{}.h".format(next_name), "w") as f:
+        f.write(header)
+    with open("{}.c".format(next_name), "w") as f:
+        f.write(body)
 
 generate_all(BUZZWORDS, EMBED)
