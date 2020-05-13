@@ -18,7 +18,7 @@ BUZZWORDS = sorted([
     "machine_learning",
     "web_scale",
     "accelerator",
-    "mining",
+    "data_mining",
     "map_reduce",
     "fission",
     "preprocessing",
@@ -26,6 +26,15 @@ BUZZWORDS = sorted([
     "cloud",
     "enterprise_ready",
     "grpc",
+    "4g",
+    "organic",
+    "free_range",
+    "saas",
+    "iaas",
+    "internet_of_things",
+    "private_cloud",
+    "microservices",
+    "monolith",
     "abandonware"
 ])
 
