@@ -4,7 +4,7 @@
 #include <arpa/inet.h>
 #include <err.h>
 
-#include "writer.h"
+#include "./legacy/writer.h"
 
 // using chunked encoding because of bug 5123
 char header[] = "HTTP/1.1 200 OK\r\n"

@@ -1,7 +1,7 @@
 CC=cc
 CFLAGS=-O0
-HEADERS=$(shell find . -name "*.h")
-OBJ=$(shell find . -name "*.h" | sed 's/\.h/\.o/g')
+HEADERS=$(shell find ./legacy -name "*.h")
+OBJ=$(shell find ./legacy -name "*.h" | sed 's/\.h/\.o/g')
 TARGET=main
 
 all: main

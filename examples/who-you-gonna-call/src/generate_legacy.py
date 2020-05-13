@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+import os
+
 # Ha! If only generating legacy was this simple!
 
 BUZZWORDS = sorted([
@@ -83,6 +85,7 @@ def generate_func(name, next_name, content, content_offset):
 
 
 def generate_all(names, content):
+    os.makedirs("./legacy",exist_ok=True)
     offset = 0
     index = 0
     next_index = 1
@@ -97,22 +100,22 @@ def generate_all(names, content):
         next_name = "{}_{}".format(names[next_index], generation)
         # plug into the system
         if index == 0 and generation == 0:
-            with open("writer.c", "w") as f:
+            with open("./legacy/writer.c", "w") as f:
                 f.write(WRITER_TEMPLATE.format(
                     name=name,
                 ))
         header, body = generate_func(name, next_name, content, offset)
-        with open("{}.h".format(name), "w") as f:
+        with open("./legacy/{}.h".format(name), "w") as f:
             f.write(header)
-        with open("{}.c".format(name), "w") as f:
+        with open("./legacy/{}.c".format(name), "w") as f:
             f.write(body)
         index = next_index
         offset += 3
     # handle the last one
     header, body = generate_func(next_name, None, content, offset)
-    with open("{}.h".format(next_name), "w") as f:
+    with open("./legacy/{}.h".format(next_name), "w") as f:
         f.write(header)
-    with open("{}.c".format(next_name), "w") as f:
+    with open("./legacy/{}.c".format(next_name), "w") as f:
         f.write(body)
 
 generate_all(BUZZWORDS, EMBED)
