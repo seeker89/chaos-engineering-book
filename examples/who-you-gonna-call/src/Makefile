@@ -15,4 +15,7 @@ $(TARGET): $(HEADERS) $(OBJ)
 clean:
 	rm $(OBJ) $(TARGET)
 
-.PHONY: clean
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: clean run
