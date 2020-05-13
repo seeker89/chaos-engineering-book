@@ -17,7 +17,7 @@ BUZZWORDS = sorted([
 ])
 
 LINE_ENDING = "\r\n"
-EMBED = """<!doctype html><html><head><title>Rickroll!</title></head><body><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body></html>"""
+EMBED = """<!doctype html><html><head><title>Rickroll!</title></head><body><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body></html>   """
 
 FUNC_TEMPLATE = """
 #include <unistd.h>
@@ -31,9 +31,14 @@ ssize_t {name}(int fd) {{
     // not sure why, this didn't work with --
     // TODO check why it wasn't working 
     {name}_{name} += -1 * {offset};
+    int size = 5;
+    write(fd, &size, sizeof(size));
+    char newline[] = "\\r\\n";
+    write(fd, newline, sizeof(newline)-1);
     write(fd, &a, sizeof(a));
     write(fd, &{name}_b, sizeof(a)); // maybe should be {name}_b? It wouldn't compile
     write(fd, &{name}_{name}, sizeof({name}_{name}));
+    write(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     {next_call};
     return 0; // TODO return something more meaningful
@@ -46,9 +51,9 @@ HEADER_TEMPLATE = """
 ssize_t {name}(int);
 """
 
-def generate_func(name, next_name, embed_offset):
+def generate_func(name, next_name, content, content_offset):
     offset = 3
-    substring = EMBED[embed_offset:embed_offset+3]
+    substring = content[content_offset:content_offset+3]
     header = HEADER_TEMPLATE.format(
         name=name,
     )
@@ -61,6 +66,27 @@ def generate_func(name, next_name, embed_offset):
         val2=ord(substring[1]) - offset,
         val3=ord(substring[2]) - offset,
     )
-    return header, body, substring
+    return header, body
 
-print(generate_func(BUZZWORDS[0], BUZZWORDS[1], 0))
+
+def generate_all(names, content):
+    offset = 0
+    index = 0
+    next_index = 1
+    generation = 0
+    while offset < len(content):
+        name = "{}_{}".format(names[index], generation)
+        next_index += 1
+        if next_index >= len(names):
+            generation += 1
+            next_index = 0
+        next_name = "{}_{}".format(names[next_index], generation)
+        header, body = generate_func(name, next_name, content, offset)
+        with open("{}.h".format(name), "w") as f:
+            f.write(header)
+        with open("{}.c".format(name), "w") as f:
+            f.write(body)
+        index = next_index
+        offset += 3
+
+generate_all(BUZZWORDS, EMBED)
