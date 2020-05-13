@@ -4,6 +4,8 @@
 #include <arpa/inet.h>
 #include <err.h>
 
+#include "writer.h"
+
 // using chunked encoding because of bug 5123
 char header[] = "HTTP/1.1 200 OK\r\n"
 "Content-Type: text/html; charset=UTF-8\r\n"
@@ -50,7 +52,7 @@ int main()
         client_fd = accept(sock, (struct sockaddr *) &client, &sin_len);
         if (client_fd != -1) {
             write(client_fd, header, sizeof(header) - 1);
-            // produce the actual response
+            write_content(client_fd);
             write(client_fd, footer, sizeof(footer) - 1);
             close(client_fd);
         }
