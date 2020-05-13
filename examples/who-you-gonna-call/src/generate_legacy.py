@@ -51,6 +51,19 @@ HEADER_TEMPLATE = """
 ssize_t {name}(int);
 """
 
+WRITER_TEMPLATE = """
+#include <unistd.h>
+#include "{name}.h"
+
+ssize_t write_content(int fd){{
+    // Not sure what else should go here, but here's for nothing
+    {name}(fd);
+    // TODO return something useful
+    // TODO error handling
+    return 0;
+}}
+"""
+
 def generate_func(name, next_name, content, content_offset):
     offset = 3
     substring = content[content_offset:content_offset+3]
@@ -82,6 +95,12 @@ def generate_all(names, content):
             generation += 1
             next_index = 0
         next_name = "{}_{}".format(names[next_index], generation)
+        # plug into the system
+        if index == 0 and generation == 0:
+            with open("writer.c", "w") as f:
+                f.write(WRITER_TEMPLATE.format(
+                    name=name,
+                ))
         header, body = generate_func(name, next_name, content, offset)
         with open("{}.h".format(name), "w") as f:
             f.write(header)
