@@ -31,10 +31,19 @@ BUZZWORDS = sorted([
     "free_range",
     "saas",
     "iaas",
+    "paas",
     "internet_of_things",
     "private_cloud",
     "microservices",
     "monolith",
+    "container",
+    "virtualization",
+    "simulation",
+    "emulator",
+    "bleeding_edge",
+    "blockchain",
+    "scalability",
+    "lean",
     "abandonware"
 ])
 
