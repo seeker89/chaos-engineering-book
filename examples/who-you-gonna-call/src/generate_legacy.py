@@ -9,13 +9,24 @@ BUZZWORDS = sorted([
     "ai",
     "disrupt",
     "deep_dive",
-    "growth_hacking",
     "agile",
     "unicorn",
     "crypto",
     "previous_legacy",
     "next_gen",
     "big_data",
+    "machine_learning",
+    "web_scale",
+    "accelerator",
+    "mining",
+    "map_reduce",
+    "fission",
+    "preprocessing",
+    "networking",
+    "cloud",
+    "enterprise_ready",
+    "grpc",
+    "abandonware"
 ])
 
 LINE_ENDING = "\r\n"
