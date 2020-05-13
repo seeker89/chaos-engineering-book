@@ -4,7 +4,7 @@ HEADERS=$(shell find ./legacy -name "*.h")
 OBJ=$(shell find ./legacy -name "*.h" | sed 's/\.h/\.o/g')
 TARGET=main
 
-all: main
+all: $(TARGET)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -15,7 +15,10 @@ $(TARGET): $(HEADERS) $(OBJ)
 clean:
 	rm $(OBJ) $(TARGET)
 
-run: $(TARGET)
+run: gen $(TARGET)
 	./$(TARGET)
 
-.PHONY: clean run
+gen:
+	./generate_legacy.py
+
+.PHONY: clean run gen
