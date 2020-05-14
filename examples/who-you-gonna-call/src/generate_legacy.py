@@ -47,7 +47,6 @@ BUZZWORDS = sorted([
     "abandonware"
 ])
 
-LINE_ENDING = "\r\n"
 EMBED = """<!doctype html><html><head><title>Rickroll!</title></head><body><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body></html>   """
 
 FUNC_TEMPLATE = """
