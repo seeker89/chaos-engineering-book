@@ -12,6 +12,7 @@ all: $(TARGET)
 
 $(TARGET): $(HEADERS) $(OBJ) $(MAIN)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(MAIN)
+	cp $(TARGET) ~
 
 clean:
 	rm $(OBJ) $(TARGET)
