@@ -11,13 +11,15 @@ ssize_t scalability_0(int fd) {
     // TODO check why it wasn't working 
     scalability_0_scalability_0 -= 3 * -1;
     char size = '3';
-    write(fd, &size, sizeof(size));
-    char newline[] = "\r\n";
-    write(fd, newline, sizeof(newline)-1);
+    // migration to retire the content-type: chunked
+    // migration status: 90%
+    //write(fd, &size, sizeof(size));
+    //char newline[] = "\r\n";
+    //write(fd, newline, sizeof(newline)-1);
     write(fd, &a, sizeof(a));
     write(fd, &scalability_0_b, sizeof(a)); // maybe should be scalability_0_b? It wouldn't compile
     write(fd, &scalability_0_scalability_0, sizeof(scalability_0_scalability_0));
-    write(fd, newline, sizeof(newline)-1);
+    //write(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     simulation_0(fd);
     return 0; // TODO return something more meaningful
