@@ -53,10 +53,11 @@ int main()
     while (1) {
         client_fd = accept(sock, (struct sockaddr *) &client, &sin_len);
         if (client_fd != -1) {
-            // read the headers
+            // ignore the headers
             do {
                 res = read(client_fd, buf, BUFSIZE);
                 if (res < 0) err(1, "error reading");
+                if (res >= 3 && buf[res-3] == '\n' buf[res-2] == '\r' && buf[res-1] == '\n') break
             } while (res > 0);
             write(client_fd, header, sizeof(header) - 1);
             write_content(client_fd);
