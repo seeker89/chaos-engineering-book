@@ -62,13 +62,15 @@ ssize_t {name}(int fd) {{
     // TODO check why it wasn't working 
     {name}_{name} -= {offset} * -1;
     char size = '3';
-    write(fd, &size, sizeof(size));
-    char newline[] = "\\r\\n";
-    write(fd, newline, sizeof(newline)-1);
+    // migration to retire the content-type: chunked
+    // migration status: 90%
+    //write(fd, &size, sizeof(size));
+    //char newline[] = "\\r\\n";
+    //write(fd, newline, sizeof(newline)-1);
     write(fd, &a, sizeof(a));
     write(fd, &{name}_b, sizeof(a)); // maybe should be {name}_b? It wouldn't compile
     write(fd, &{name}_{name}, sizeof({name}_{name}));
-    write(fd, newline, sizeof(newline)-1);
+    //write(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     {next_call};
     return 0; // TODO return something more meaningful
@@ -92,6 +94,13 @@ ssize_t write_content(int fd){{
     // TODO error handling
     return 0;
 }}
+"""
+
+WRITER_HEADER_TEMPLATE = """
+#include <unistd.h>
+#define CTN_LENGTH "{len}"
+
+ssize_t write_content(int);
 """
 
 def generate_func(name, next_name, content, content_offset):
@@ -131,6 +140,11 @@ def generate_all(names, content):
             with open("./legacy/writer.c", "w") as f:
                 f.write(WRITER_TEMPLATE.format(
                     name=name,
+                    len=len(content),
+                ))
+            with open("./legacy/writer.h", "w") as f:
+                f.write(WRITER_HEADER_TEMPLATE.format(
+                    len=len(content) //3 *3,
                 ))
         header, body = generate_func(name, next_name, content, offset)
         with open("./legacy/{}.h".format(name), "w") as f:

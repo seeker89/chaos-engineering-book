@@ -10,12 +10,8 @@
 char header[] = "HTTP/1.0 200 OK\r\n"
 "Content-Type: text/html; charset=UTF-8\r\n"
 "Server: Pretty Legacy\r\n"
-"Transfer-Encoding: chunked\r\n"
 "Connection: close\r\n"
-"\r\n";
-
-char footer[] =
-"0\r\n"
+"Content-Length: " CTN_LENGTH "\r\n"
 "\r\n";
 
 int main()
@@ -54,7 +50,6 @@ int main()
         if (client_fd != -1) {
             write(client_fd, header, sizeof(header) - 1);
             write_content(client_fd);
-            write(client_fd, footer, sizeof(footer) - 1);
             // simulate some more work by sleeping for 5ms
             usleep(5*1000);
             // don't forget to flush
