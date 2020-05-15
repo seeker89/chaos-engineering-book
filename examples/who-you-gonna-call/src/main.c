@@ -2,9 +2,12 @@
 #include <unistd.h>
 // socket, accept, socklen_t
 #include <arpa/inet.h>
+#include <sys/socket.h>
 #include <err.h>
 
 #include "./legacy/writer.h"
+
+#define BUFSIZE 2048
 
 // using chunked encoding because of bug 5123
 char header[] = "HTTP/1.0 200 OK\r\n"
@@ -16,6 +19,8 @@ char header[] = "HTTP/1.0 200 OK\r\n"
 
 int main()
 {
+    int res;
+    char buf[BUFSIZE];
     // get a socket and configure it
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
@@ -32,7 +37,7 @@ int main()
 
     // bind and listen
     // http://man7.org/linux/man-pages/man2/accept.2.html
-    int res = bind(sock, (struct sockaddr *) &address, sizeof(address));
+    res = bind(sock, (struct sockaddr *) &address, sizeof(address));
     if (res < 0) {
         close(sock);
         err(1, "error binding");
@@ -48,6 +53,11 @@ int main()
     while (1) {
         client_fd = accept(sock, (struct sockaddr *) &client, &sin_len);
         if (client_fd != -1) {
+            // read the headers
+            do {
+                res = read(client_fd, buf, BUFSIZE);
+                if (res < 0) err(1, "error reading");
+            } while (res > 0);
             write(client_fd, header, sizeof(header) - 1);
             write_content(client_fd);
             // simulate some more work by sleeping for 5ms
