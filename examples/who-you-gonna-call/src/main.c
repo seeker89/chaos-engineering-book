@@ -4,6 +4,8 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <err.h>
+// printf
+#include <stdio.h>
 
 #if !defined(SOMETHING_REALLY_CIPTIC)
 #include <signal.h>
@@ -12,6 +14,7 @@
 #include "./legacy/writer.h"
 
 #define BUFSIZE 2048
+#define PORT 8080
 
 // using chunked encoding because of bug 5123
 char header[] = "HTTP/1.0 200 OK\r\n"
@@ -41,7 +44,7 @@ int main()
     struct sockaddr_in address;
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = htonl(INADDR_ANY);
-    address.sin_port = htons(8080);
+    address.sin_port = htons(PORT);
 
     // bind and listen
     // http://man7.org/linux/man-pages/man2/accept.2.html
@@ -53,6 +56,8 @@ int main()
     // http://man7.org/linux/man-pages/man2/listen.2.html
     int arbitrary_queue_len = 1000;
     listen(sock, arbitrary_queue_len);
+
+    printf("Listening on port %d", PORT);
 
     // accept some connection
     int client_fd;
