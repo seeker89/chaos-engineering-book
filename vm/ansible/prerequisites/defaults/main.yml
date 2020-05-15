@@ -33,6 +33,12 @@ packages_to_install:
   - mysql-server
   - php-mysql
   - net-tools
+  # man pages
+  - manpages
+  - manpages-dev
+  # man 3
+  - manpages-posix
+  - manpages-posix-dev
 
 packages_to_remove:
   - libreoffice-core
