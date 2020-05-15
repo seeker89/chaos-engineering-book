@@ -2,7 +2,7 @@ CC=cc
 CFLAGS=-O0
 HEADERS=$(shell find ./legacy -name "*.h")
 OBJ=$(shell find ./legacy -name "*.h" | sed 's/\.h/\.o/g')
-TARGET=legacy
+TARGET=legacy_server
 MAIN=main.c
 
 all: $(TARGET)
