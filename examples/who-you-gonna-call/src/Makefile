@@ -3,14 +3,15 @@ CFLAGS=-O0
 HEADERS=$(shell find ./legacy -name "*.h")
 OBJ=$(shell find ./legacy -name "*.h" | sed 's/\.h/\.o/g')
 TARGET=main
+MAIN=main.c
 
 all: $(TARGET)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(TARGET): $(HEADERS) $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) main.c
+$(TARGET): $(HEADERS) $(OBJ) $(MAIN)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(MAIN)
 
 clean:
 	rm $(OBJ) $(TARGET)
