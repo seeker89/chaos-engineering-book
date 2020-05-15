@@ -55,10 +55,10 @@ int main()
             write(client_fd, header, sizeof(header) - 1);
             write_content(client_fd);
             write(client_fd, footer, sizeof(footer) - 1);
-            // don't forget to flush
-            fsync(client_fd);
             // simulate some more work by sleeping for 5ms
             usleep(5*1000);
+            // don't forget to flush
+            fsync(client_fd);
             close(client_fd);
         }
     }
