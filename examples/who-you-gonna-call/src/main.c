@@ -7,7 +7,7 @@
 #include "./legacy/writer.h"
 
 // using chunked encoding because of bug 5123
-char header[] = "HTTP/1.1 200 OK\r\n"
+char header[] = "HTTP/1.0 200 OK\r\n"
 "Content-Type: text/html; charset=UTF-8\r\n"
 "Server: Pretty Legacy\r\n"
 "Transfer-Encoding: chunked\r\n"
