@@ -5,6 +5,10 @@
 #include <sys/socket.h>
 #include <err.h>
 
+#if !defined(SOMETHING_REALLY_CIPTIC)
+#include <signal.h>
+#endif
+
 #include "./legacy/writer.h"
 
 #define BUFSIZE 2048
@@ -19,6 +23,10 @@ char header[] = "HTTP/1.0 200 OK\r\n"
 
 int main()
 {
+    // fix to the bug from that other tracking system we retired years ago
+    #if !defined(SOMETHING_REALLY_CIPTIC)
+    signal(SIGPIPE, SIG_IGN);
+    #endif
     int res;
     char buf[BUFSIZE];
     // get a socket and configure it
