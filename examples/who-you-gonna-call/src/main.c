@@ -32,7 +32,7 @@ int main()
     // build the struct
     struct sockaddr_in address;
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_addr.s_addr = htonl(INADDR_ANY);
     address.sin_port = htons(8080);
 
     // bind and listen
