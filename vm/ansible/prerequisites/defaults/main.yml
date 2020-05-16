@@ -16,6 +16,7 @@ packages_to_install:
   - stress
   - bpfcc-tools
   # dtrace
+  - systemtap
   - systemtap-sdt-dev
   - zlib1g-dev
   - libffi-dev
