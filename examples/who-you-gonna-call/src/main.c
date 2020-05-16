@@ -57,7 +57,7 @@ int main()
     int arbitrary_queue_len = 1000;
     listen(sock, arbitrary_queue_len);
 
-    printf("Listening on port %d\n", PORT);
+    printf("Listening on port %d, PID: %d\n", PORT, (int)getpid());
 
     // accept some connection
     int client_fd;
