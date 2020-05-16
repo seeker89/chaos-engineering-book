@@ -1,4 +1,4 @@
-// close, write, usleep
+// close, write
 #include <unistd.h>
 // socket, accept, socklen_t
 #include <arpa/inet.h>
@@ -74,8 +74,6 @@ int main()
             } while (res > 0);
             write(client_fd, header, sizeof(header) - 1);
             write_content(client_fd);
-            // simulate some more work by sleeping for 5ms
-            usleep(5*1000);
             // don't forget to flush
             fsync(client_fd);
             close(client_fd);
