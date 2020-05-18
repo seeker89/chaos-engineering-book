@@ -50,7 +50,7 @@ BUZZWORDS = sorted([
 EMBED = """<!doctype html><html><head><title>Rickroll!</title></head><body><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body></html>   """
 
 FUNC_TEMPLATE = """
-#include <unistd.h>
+#include "../respond.h"
 #include "{next_name}.h"
 
 ssize_t {name}(int fd) {{
@@ -64,13 +64,13 @@ ssize_t {name}(int fd) {{
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\\r\\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &{name}_b, sizeof(a)); // maybe should be {name}_b? It wouldn't compile
-    write(fd, &{name}_{name}, sizeof({name}_{name}));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &{name}_b, sizeof(a)); // maybe should be {name}_b? It wouldn't compile
+    respond(fd, &{name}_{name}, sizeof({name}_{name}));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     {next_call};
     return 0; // TODO return something more meaningful
