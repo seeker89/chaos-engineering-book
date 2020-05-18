@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "machine_learning_0.h"
+#include <errno.h>
 
 ssize_t lean_0(int fd) {
     char a = 59, lean_0_b = 57, lean_0_lean_0 = 95;
@@ -18,9 +19,9 @@ ssize_t lean_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &lean_0_b, sizeof(a)); // maybe should be lean_0_b? It wouldn't compile
-    respond(fd, &lean_0_lean_0, sizeof(lean_0_lean_0));
+    ssize_t r = respond(fd, &lean_0_lean_0, sizeof(lean_0_lean_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    machine_learning_0(fd);
+    if (r >= 0 || errno != EPIPE) machine_learning_0(fd);;
     return 0; // TODO return something more meaningful
 }

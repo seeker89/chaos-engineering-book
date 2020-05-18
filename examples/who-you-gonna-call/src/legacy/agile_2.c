@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "ai_2.h"
+#include <errno.h>
 
 ssize_t agile_2(int fd) {
     char a = 96, agile_2_b = 113, agile_2_agile_2 = 114;
@@ -18,9 +19,9 @@ ssize_t agile_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &agile_2_b, sizeof(a)); // maybe should be agile_2_b? It wouldn't compile
-    respond(fd, &agile_2_agile_2, sizeof(agile_2_agile_2));
+    ssize_t r = respond(fd, &agile_2_agile_2, sizeof(agile_2_agile_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    ai_2(fd);
+    if (r >= 0 || errno != EPIPE) ai_2(fd);;
     return 0; // TODO return something more meaningful
 }

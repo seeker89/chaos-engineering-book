@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "organic_0.h"
+#include <errno.h>
 
 ssize_t next_gen_0(int fd) {
     char a = 31, next_gen_0_b = 50, next_gen_0_next_gen_0 = 51;
@@ -18,9 +19,9 @@ ssize_t next_gen_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &next_gen_0_b, sizeof(a)); // maybe should be next_gen_0_b? It wouldn't compile
-    respond(fd, &next_gen_0_next_gen_0, sizeof(next_gen_0_next_gen_0));
+    ssize_t r = respond(fd, &next_gen_0_next_gen_0, sizeof(next_gen_0_next_gen_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    organic_0(fd);
+    if (r >= 0 || errno != EPIPE) organic_0(fd);;
     return 0; // TODO return something more meaningful
 }

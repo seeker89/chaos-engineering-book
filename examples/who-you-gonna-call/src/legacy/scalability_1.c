@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "simulation_1.h"
+#include <errno.h>
 
 ssize_t scalability_1(int fd) {
     char a = 108, scalability_1_b = 112, scalability_1_scalability_1 = 96;
@@ -18,9 +19,9 @@ ssize_t scalability_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &scalability_1_b, sizeof(a)); // maybe should be scalability_1_b? It wouldn't compile
-    respond(fd, &scalability_1_scalability_1, sizeof(scalability_1_scalability_1));
+    ssize_t r = respond(fd, &scalability_1_scalability_1, sizeof(scalability_1_scalability_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    simulation_1(fd);
+    if (r >= 0 || errno != EPIPE) simulation_1(fd);;
     return 0; // TODO return something more meaningful
 }

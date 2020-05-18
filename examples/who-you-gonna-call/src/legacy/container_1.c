@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "crypto_1.h"
+#include <errno.h>
 
 ssize_t container_1(int fd) {
     char a = 97, container_1_b = 78, container_1_container_1 = 116;
@@ -18,9 +19,9 @@ ssize_t container_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &container_1_b, sizeof(a)); // maybe should be container_1_b? It wouldn't compile
-    respond(fd, &container_1_container_1, sizeof(container_1_container_1));
+    ssize_t r = respond(fd, &container_1_container_1, sizeof(container_1_container_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    crypto_1(fd);
+    if (r >= 0 || errno != EPIPE) crypto_1(fd);;
     return 0; // TODO return something more meaningful
 }

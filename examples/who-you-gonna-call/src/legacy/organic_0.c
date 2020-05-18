@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "paas_0.h"
+#include <errno.h>
 
 ssize_t organic_0(int fd) {
     char a = 45, organic_0_b = 31, organic_0_organic_0 = 29;
@@ -18,9 +19,9 @@ ssize_t organic_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &organic_0_b, sizeof(a)); // maybe should be organic_0_b? It wouldn't compile
-    respond(fd, &organic_0_organic_0, sizeof(organic_0_organic_0));
+    ssize_t r = respond(fd, &organic_0_organic_0, sizeof(organic_0_organic_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    paas_0(fd);
+    if (r >= 0 || errno != EPIPE) paas_0(fd);;
     return 0; // TODO return something more meaningful
 }

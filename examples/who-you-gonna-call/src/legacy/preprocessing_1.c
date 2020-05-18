@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "previous_legacy_1.h"
+#include <errno.h>
 
 ssize_t preprocessing_1(int fd) {
     char a = 97, preprocessing_1_b = 42, preprocessing_1_preprocessing_1 = 106;
@@ -18,9 +19,9 @@ ssize_t preprocessing_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &preprocessing_1_b, sizeof(a)); // maybe should be preprocessing_1_b? It wouldn't compile
-    respond(fd, &preprocessing_1_preprocessing_1, sizeof(preprocessing_1_preprocessing_1));
+    ssize_t r = respond(fd, &preprocessing_1_preprocessing_1, sizeof(preprocessing_1_preprocessing_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    previous_legacy_1(fd);
+    if (r >= 0 || errno != EPIPE) previous_legacy_1(fd);;
     return 0; // TODO return something more meaningful
 }

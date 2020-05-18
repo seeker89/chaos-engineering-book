@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "disrupt_1.h"
+#include <errno.h>
 
 ssize_t deep_dive_1(int fd) {
     char a = 96, deep_dive_1_b = 78, deep_dive_1_deep_dive_1 = 31;
@@ -18,9 +19,9 @@ ssize_t deep_dive_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &deep_dive_1_b, sizeof(a)); // maybe should be deep_dive_1_b? It wouldn't compile
-    respond(fd, &deep_dive_1_deep_dive_1, sizeof(deep_dive_1_deep_dive_1));
+    ssize_t r = respond(fd, &deep_dive_1_deep_dive_1, sizeof(deep_dive_1_deep_dive_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    disrupt_1(fd);
+    if (r >= 0 || errno != EPIPE) disrupt_1(fd);;
     return 0; // TODO return something more meaningful
 }

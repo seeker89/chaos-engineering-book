@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "bleeding_edge_1.h"
+#include <errno.h>
 
 ssize_t big_data_1(int fd) {
     char a = 98, big_data_1_b = 43, big_data_1_big_data_1 = 96;
@@ -18,9 +19,9 @@ ssize_t big_data_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &big_data_1_b, sizeof(a)); // maybe should be big_data_1_b? It wouldn't compile
-    respond(fd, &big_data_1_big_data_1, sizeof(big_data_1_big_data_1));
+    ssize_t r = respond(fd, &big_data_1_big_data_1, sizeof(big_data_1_big_data_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    bleeding_edge_1(fd);
+    if (r >= 0 || errno != EPIPE) bleeding_edge_1(fd);;
     return 0; // TODO return something more meaningful
 }

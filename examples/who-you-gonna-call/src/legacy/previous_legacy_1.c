@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "private_cloud_1.h"
+#include <errno.h>
 
 ssize_t previous_legacy_1(int fd) {
     char a = 98, previous_legacy_1_b = 97, previous_legacy_1_previous_legacy_1 = 102;
@@ -18,9 +19,9 @@ ssize_t previous_legacy_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &previous_legacy_1_b, sizeof(a)); // maybe should be previous_legacy_1_b? It wouldn't compile
-    respond(fd, &previous_legacy_1_previous_legacy_1, sizeof(previous_legacy_1_previous_legacy_1));
+    ssize_t r = respond(fd, &previous_legacy_1_previous_legacy_1, sizeof(previous_legacy_1_previous_legacy_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    private_cloud_1(fd);
+    if (r >= 0 || errno != EPIPE) private_cloud_1(fd);;
     return 0; // TODO return something more meaningful
 }

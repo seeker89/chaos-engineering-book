@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "web_scale_1.h"
+#include <errno.h>
 
 ssize_t virtualization_1(int fd) {
     char a = 102, virtualization_1_b = 96, virtualization_1_virtualization_1 = 113;
@@ -18,9 +19,9 @@ ssize_t virtualization_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &virtualization_1_b, sizeof(a)); // maybe should be virtualization_1_b? It wouldn't compile
-    respond(fd, &virtualization_1_virtualization_1, sizeof(virtualization_1_virtualization_1));
+    ssize_t r = respond(fd, &virtualization_1_virtualization_1, sizeof(virtualization_1_virtualization_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    web_scale_1(fd);
+    if (r >= 0 || errno != EPIPE) web_scale_1(fd);;
     return 0; // TODO return something more meaningful
 }

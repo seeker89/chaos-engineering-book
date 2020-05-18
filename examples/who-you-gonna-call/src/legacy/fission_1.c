@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "free_range_1.h"
+#include <errno.h>
 
 ssize_t fission_1(int fd) {
     char a = 97, fission_1_b = 98, fission_1_fission_1 = 111;
@@ -18,9 +19,9 @@ ssize_t fission_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &fission_1_b, sizeof(a)); // maybe should be fission_1_b? It wouldn't compile
-    respond(fd, &fission_1_fission_1, sizeof(fission_1_fission_1));
+    ssize_t r = respond(fd, &fission_1_fission_1, sizeof(fission_1_fission_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    free_range_1(fd);
+    if (r >= 0 || errno != EPIPE) free_range_1(fd);;
     return 0; // TODO return something more meaningful
 }

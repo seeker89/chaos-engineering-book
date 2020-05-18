@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "enterprise_ready_1.h"
+#include <errno.h>
 
 ssize_t emulator_1(int fd) {
     char a = 94, emulator_1_b = 106, emulator_1_emulator_1 = 98;
@@ -18,9 +19,9 @@ ssize_t emulator_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &emulator_1_b, sizeof(a)); // maybe should be emulator_1_b? It wouldn't compile
-    respond(fd, &emulator_1_emulator_1, sizeof(emulator_1_emulator_1));
+    ssize_t r = respond(fd, &emulator_1_emulator_1, sizeof(emulator_1_emulator_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    enterprise_ready_1(fd);
+    if (r >= 0 || errno != EPIPE) enterprise_ready_1(fd);;
     return 0; // TODO return something more meaningful
 }

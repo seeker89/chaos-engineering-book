@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "scalability_0.h"
+#include <errno.h>
 
 ssize_t saas_0(int fd) {
     char a = 96, saas_0_b = 58, saas_0_saas_0 = 31;
@@ -18,9 +19,9 @@ ssize_t saas_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &saas_0_b, sizeof(a)); // maybe should be saas_0_b? It wouldn't compile
-    respond(fd, &saas_0_saas_0, sizeof(saas_0_saas_0));
+    ssize_t r = respond(fd, &saas_0_saas_0, sizeof(saas_0_saas_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    scalability_0(fd);
+    if (r >= 0 || errno != EPIPE) scalability_0(fd);;
     return 0; // TODO return something more meaningful
 }

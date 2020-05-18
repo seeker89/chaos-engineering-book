@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "saas_0.h"
+#include <errno.h>
 
 ssize_t private_cloud_0(int fd) {
     char a = 29, private_cloud_0_b = 112, private_cloud_0_private_cloud_0 = 111;
@@ -18,9 +19,9 @@ ssize_t private_cloud_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &private_cloud_0_b, sizeof(a)); // maybe should be private_cloud_0_b? It wouldn't compile
-    respond(fd, &private_cloud_0_private_cloud_0, sizeof(private_cloud_0_private_cloud_0));
+    ssize_t r = respond(fd, &private_cloud_0_private_cloud_0, sizeof(private_cloud_0_private_cloud_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    saas_0(fd);
+    if (r >= 0 || errno != EPIPE) saas_0(fd);;
     return 0; // TODO return something more meaningful
 }

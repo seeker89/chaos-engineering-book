@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "agile_1.h"
+#include <errno.h>
 
 ssize_t accelerator_1(int fd) {
     char a = 98, accelerator_1_b = 42, accelerator_1_accelerator_1 = 107;
@@ -18,9 +19,9 @@ ssize_t accelerator_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &accelerator_1_b, sizeof(a)); // maybe should be accelerator_1_b? It wouldn't compile
-    respond(fd, &accelerator_1_accelerator_1, sizeof(accelerator_1_accelerator_1));
+    ssize_t r = respond(fd, &accelerator_1_accelerator_1, sizeof(accelerator_1_accelerator_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    agile_1(fd);
+    if (r >= 0 || errno != EPIPE) agile_1(fd);;
     return 0; // TODO return something more meaningful
 }

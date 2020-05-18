@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "unicorn_1.h"
+#include <errno.h>
 
 ssize_t simulation_1(int fd) {
     char a = 108, simulation_1_b = 109, simulation_1_simulation_1 = 98;
@@ -18,9 +19,9 @@ ssize_t simulation_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &simulation_1_b, sizeof(a)); // maybe should be simulation_1_b? It wouldn't compile
-    respond(fd, &simulation_1_simulation_1, sizeof(simulation_1_simulation_1));
+    ssize_t r = respond(fd, &simulation_1_simulation_1, sizeof(simulation_1_simulation_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    unicorn_1(fd);
+    if (r >= 0 || errno != EPIPE) unicorn_1(fd);;
     return 0; // TODO return something more meaningful
 }

@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "data_mining_2.h"
+#include <errno.h>
 
 ssize_t crypto_2(int fd) {
     char a = 107, crypto_2_b = 59, crypto_2_crypto_2 = 57;
@@ -18,9 +19,9 @@ ssize_t crypto_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &crypto_2_b, sizeof(a)); // maybe should be crypto_2_b? It wouldn't compile
-    respond(fd, &crypto_2_crypto_2, sizeof(crypto_2_crypto_2));
+    ssize_t r = respond(fd, &crypto_2_crypto_2, sizeof(crypto_2_crypto_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    data_mining_2(fd);
+    if (r >= 0 || errno != EPIPE) data_mining_2(fd);;
     return 0; // TODO return something more meaningful
 }

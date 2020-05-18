@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "lean_0.h"
+#include <errno.h>
 
 ssize_t internet_of_things_0(int fd) {
     char a = 98, internet_of_things_0_b = 94, internet_of_things_0_internet_of_things_0 = 97;
@@ -18,9 +19,9 @@ ssize_t internet_of_things_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &internet_of_things_0_b, sizeof(a)); // maybe should be internet_of_things_0_b? It wouldn't compile
-    respond(fd, &internet_of_things_0_internet_of_things_0, sizeof(internet_of_things_0_internet_of_things_0));
+    ssize_t r = respond(fd, &internet_of_things_0_internet_of_things_0, sizeof(internet_of_things_0_internet_of_things_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    lean_0(fd);
+    if (r >= 0 || errno != EPIPE) lean_0(fd);;
     return 0; // TODO return something more meaningful
 }

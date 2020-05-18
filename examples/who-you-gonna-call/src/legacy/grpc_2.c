@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "grpc_2.h"
+#include <errno.h>
 
 ssize_t grpc_2(int fd) {
     char a = 59, grpc_2_b = 29, grpc_2_grpc_2 = 29;
@@ -18,7 +19,7 @@ ssize_t grpc_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &grpc_2_b, sizeof(a)); // maybe should be grpc_2_b? It wouldn't compile
-    respond(fd, &grpc_2_grpc_2, sizeof(grpc_2_grpc_2));
+    ssize_t r = respond(fd, &grpc_2_grpc_2, sizeof(grpc_2_grpc_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     ;

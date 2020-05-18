@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "accelerator_2.h"
+#include <errno.h>
 
 ssize_t abandonware_2(int fd) {
     char a = 42, abandonware_2_b = 102, abandonware_2_abandonware_2 = 107;
@@ -18,9 +19,9 @@ ssize_t abandonware_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &abandonware_2_b, sizeof(a)); // maybe should be abandonware_2_b? It wouldn't compile
-    respond(fd, &abandonware_2_abandonware_2, sizeof(abandonware_2_abandonware_2));
+    ssize_t r = respond(fd, &abandonware_2_abandonware_2, sizeof(abandonware_2_abandonware_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    accelerator_2(fd);
+    if (r >= 0 || errno != EPIPE) accelerator_2(fd);;
     return 0; // TODO return something more meaningful
 }

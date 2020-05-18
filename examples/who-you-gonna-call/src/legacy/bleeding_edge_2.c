@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "blockchain_2.h"
+#include <errno.h>
 
 ssize_t bleeding_edge_2(int fd) {
     char a = 105, bleeding_edge_2_b = 108, bleeding_edge_2_bleeding_edge_2 = 116;
@@ -18,9 +19,9 @@ ssize_t bleeding_edge_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &bleeding_edge_2_b, sizeof(a)); // maybe should be bleeding_edge_2_b? It wouldn't compile
-    respond(fd, &bleeding_edge_2_bleeding_edge_2, sizeof(bleeding_edge_2_bleeding_edge_2));
+    ssize_t r = respond(fd, &bleeding_edge_2_bleeding_edge_2, sizeof(bleeding_edge_2_bleeding_edge_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    blockchain_2(fd);
+    if (r >= 0 || errno != EPIPE) blockchain_2(fd);;
     return 0; // TODO return something more meaningful
 }

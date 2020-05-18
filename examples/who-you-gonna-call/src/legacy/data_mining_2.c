@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "deep_dive_2.h"
+#include <errno.h>
 
 ssize_t data_mining_2(int fd) {
     char a = 44, data_mining_2_b = 102, data_mining_2_data_mining_2 = 99;
@@ -18,9 +19,9 @@ ssize_t data_mining_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &data_mining_2_b, sizeof(a)); // maybe should be data_mining_2_b? It wouldn't compile
-    respond(fd, &data_mining_2_data_mining_2, sizeof(data_mining_2_data_mining_2));
+    ssize_t r = respond(fd, &data_mining_2_data_mining_2, sizeof(data_mining_2_data_mining_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    deep_dive_2(fd);
+    if (r >= 0 || errno != EPIPE) deep_dive_2(fd);;
     return 0; // TODO return something more meaningful
 }

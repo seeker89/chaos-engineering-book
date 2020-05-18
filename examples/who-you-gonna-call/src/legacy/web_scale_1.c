@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "abandonware_2.h"
+#include <errno.h>
 
 ssize_t web_scale_1(int fd) {
     char a = 114, web_scale_1_b = 111, web_scale_1_web_scale_1 = 98;
@@ -18,9 +19,9 @@ ssize_t web_scale_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &web_scale_1_b, sizeof(a)); // maybe should be web_scale_1_b? It wouldn't compile
-    respond(fd, &web_scale_1_web_scale_1, sizeof(web_scale_1_web_scale_1));
+    ssize_t r = respond(fd, &web_scale_1_web_scale_1, sizeof(web_scale_1_web_scale_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    abandonware_2(fd);
+    if (r >= 0 || errno != EPIPE) abandonware_2(fd);;
     return 0; // TODO return something more meaningful
 }

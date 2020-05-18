@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "next_gen_0.h"
+#include <errno.h>
 
 ssize_t new_4g_0(int fd) {
     char a = 113, new_4g_0_b = 101, new_4g_0_new_4g_0 = 58;
@@ -18,9 +19,9 @@ ssize_t new_4g_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &new_4g_0_b, sizeof(a)); // maybe should be new_4g_0_b? It wouldn't compile
-    respond(fd, &new_4g_0_new_4g_0, sizeof(new_4g_0_new_4g_0));
+    ssize_t r = respond(fd, &new_4g_0_new_4g_0, sizeof(new_4g_0_new_4g_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    next_gen_0(fd);
+    if (r >= 0 || errno != EPIPE) next_gen_0(fd);;
     return 0; // TODO return something more meaningful
 }

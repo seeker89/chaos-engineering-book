@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "microservices_1.h"
+#include <errno.h>
 
 ssize_t map_reduce_1(int fd) {
     char a = 111, map_reduce_1_b = 108, map_reduce_1_map_reduce_1 = 106;
@@ -18,9 +19,9 @@ ssize_t map_reduce_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &map_reduce_1_b, sizeof(a)); // maybe should be map_reduce_1_b? It wouldn't compile
-    respond(fd, &map_reduce_1_map_reduce_1, sizeof(map_reduce_1_map_reduce_1));
+    ssize_t r = respond(fd, &map_reduce_1_map_reduce_1, sizeof(map_reduce_1_map_reduce_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    microservices_1(fd);
+    if (r >= 0 || errno != EPIPE) microservices_1(fd);;
     return 0; // TODO return something more meaningful
 }

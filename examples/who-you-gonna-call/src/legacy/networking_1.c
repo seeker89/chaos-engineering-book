@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "new_4g_1.h"
+#include <errno.h>
 
 ssize_t networking_1(int fd) {
     char a = 94, networking_1_b = 114, networking_1_networking_1 = 113;
@@ -18,9 +19,9 @@ ssize_t networking_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &networking_1_b, sizeof(a)); // maybe should be networking_1_b? It wouldn't compile
-    respond(fd, &networking_1_networking_1, sizeof(networking_1_networking_1));
+    ssize_t r = respond(fd, &networking_1_networking_1, sizeof(networking_1_networking_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    new_4g_1(fd);
+    if (r >= 0 || errno != EPIPE) new_4g_1(fd);;
     return 0; // TODO return something more meaningful
 }

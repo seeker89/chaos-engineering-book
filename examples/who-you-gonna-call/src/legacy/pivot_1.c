@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "preprocessing_1.h"
+#include <errno.h>
 
 ssize_t pivot_1(int fd) {
     char a = 109, pivot_1_b = 113, pivot_1_pivot_1 = 98;
@@ -18,9 +19,9 @@ ssize_t pivot_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &pivot_1_b, sizeof(a)); // maybe should be pivot_1_b? It wouldn't compile
-    respond(fd, &pivot_1_pivot_1, sizeof(pivot_1_pivot_1));
+    ssize_t r = respond(fd, &pivot_1_pivot_1, sizeof(pivot_1_pivot_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    preprocessing_1(fd);
+    if (r >= 0 || errno != EPIPE) preprocessing_1(fd);;
     return 0; // TODO return something more meaningful
 }

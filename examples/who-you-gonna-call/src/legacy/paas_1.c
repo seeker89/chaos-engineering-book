@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "pivot_1.h"
+#include <errno.h>
 
 ssize_t paas_1(int fd) {
     char a = 96, paas_1_b = 111, paas_1_paas_1 = 118;
@@ -18,9 +19,9 @@ ssize_t paas_1(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &paas_1_b, sizeof(a)); // maybe should be paas_1_b? It wouldn't compile
-    respond(fd, &paas_1_paas_1, sizeof(paas_1_paas_1));
+    ssize_t r = respond(fd, &paas_1_paas_1, sizeof(paas_1_paas_1));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    pivot_1(fd);
+    if (r >= 0 || errno != EPIPE) pivot_1(fd);;
     return 0; // TODO return something more meaningful
 }

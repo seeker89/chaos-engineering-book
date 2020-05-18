@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "monolith_0.h"
+#include <errno.h>
 
 ssize_t microservices_0(int fd) {
     char a = 99, microservices_0_b = 111, microservices_0_microservices_0 = 94;
@@ -18,9 +19,9 @@ ssize_t microservices_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &microservices_0_b, sizeof(a)); // maybe should be microservices_0_b? It wouldn't compile
-    respond(fd, &microservices_0_microservices_0, sizeof(microservices_0_microservices_0));
+    ssize_t r = respond(fd, &microservices_0_microservices_0, sizeof(microservices_0_microservices_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    monolith_0(fd);
+    if (r >= 0 || errno != EPIPE) monolith_0(fd);;
     return 0; // TODO return something more meaningful
 }

@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "grpc_0.h"
+#include <errno.h>
 
 ssize_t free_range_0(int fd) {
     char a = 113, free_range_0_b = 102, free_range_0_free_range_0 = 113;
@@ -18,9 +19,9 @@ ssize_t free_range_0(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &free_range_0_b, sizeof(a)); // maybe should be free_range_0_b? It wouldn't compile
-    respond(fd, &free_range_0_free_range_0, sizeof(free_range_0_free_range_0));
+    ssize_t r = respond(fd, &free_range_0_free_range_0, sizeof(free_range_0_free_range_0));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    grpc_0(fd);
+    if (r >= 0 || errno != EPIPE) grpc_0(fd);;
     return 0; // TODO return something more meaningful
 }

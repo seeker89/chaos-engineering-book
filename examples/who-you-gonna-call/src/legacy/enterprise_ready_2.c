@@ -1,6 +1,7 @@
 
 #include "../respond.h"
 #include "fission_2.h"
+#include <errno.h>
 
 ssize_t enterprise_ready_2(int fd) {
     char a = 97, enterprise_ready_2_b = 118, enterprise_ready_2_enterprise_ready_2 = 59;
@@ -18,9 +19,9 @@ ssize_t enterprise_ready_2(int fd) {
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &enterprise_ready_2_b, sizeof(a)); // maybe should be enterprise_ready_2_b? It wouldn't compile
-    respond(fd, &enterprise_ready_2_enterprise_ready_2, sizeof(enterprise_ready_2_enterprise_ready_2));
+    ssize_t r = respond(fd, &enterprise_ready_2_enterprise_ready_2, sizeof(enterprise_ready_2_enterprise_ready_2));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
-    fission_2(fd);
+    if (r >= 0 || errno != EPIPE) fission_2(fd);;
     return 0; // TODO return something more meaningful
 }
