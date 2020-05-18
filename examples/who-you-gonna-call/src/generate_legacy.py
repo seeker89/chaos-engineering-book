@@ -52,6 +52,7 @@ EMBED = """<!doctype html><html><head><title>Rickroll!</title></head><body><ifra
 FUNC_TEMPLATE = """
 #include "../respond.h"
 #include "{next_name}.h"
+#include <errno.h>
 
 ssize_t {name}(int fd) {{
     char a = {val1}, {name}_b = {val2}, {name}_{name} = {val3};
@@ -69,7 +70,7 @@ ssize_t {name}(int fd) {{
     //respond(fd, newline, sizeof(newline)-1);
     respond(fd, &a, sizeof(a));
     respond(fd, &{name}_b, sizeof(a)); // maybe should be {name}_b? It wouldn't compile
-    respond(fd, &{name}_{name}, sizeof({name}_{name}));
+    ssize_t r = respond(fd, &{name}_{name}, sizeof({name}_{name}));
     //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     {next_call};
@@ -113,7 +114,7 @@ def generate_func(name, next_name, content, content_offset):
         name=name,
         next_name=next_name if next_name else name,
         offset=offset,
-        next_call="{}(fd)".format(next_name) if next_name else "",
+        next_call="if (r >= 0 || errno != EPIPE) {}(fd);".format(next_name) if next_name else "",
         val1=ord(substring[0]) - offset,
         val2=ord(substring[1]) - offset,
         val3=ord(substring[2]) - offset,
