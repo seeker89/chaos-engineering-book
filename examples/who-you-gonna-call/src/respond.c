@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include "respond.h"
 
 ssize_t respond(int fildes, const void *buf, size_t nbyte) {
     ssize_t written;
@@ -9,6 +10,8 @@ ssize_t respond(int fildes, const void *buf, size_t nbyte) {
         if (written > -1) {
             return written;
         }
+        // jira 70917 - if the first write doesn't work, try smaller chunks
+        j++; if (j%2== 0) return written;
     }
     return written;
 }
