@@ -30,6 +30,6 @@ docker-build:
 	docker build -t ${tag} .
 
 docker-run:
-	docker run --rm --name legacy -ti ${tag}
+	docker run --rm --name legacy -ti --security-opt seccomp=../profile.json -p 8080:8080 ${tag}
 
 .PHONY: clean run gen docker-build docker-run
