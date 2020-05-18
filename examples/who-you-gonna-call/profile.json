@@ -5,8 +5,8 @@
         "SCMP_ARCH_X86"
     ],
     "syscalls": [
-		{
-			"names": [
+        {
+            "names": [
                 "access",
                 "arch_prctl",
                 "bind",
@@ -26,9 +26,9 @@
                 "setsockopt",
                 "socket",
                 "write"
-			],
-			"action": "SCMP_ACT_ALLOW",
-			"args": null
+            ],
+            "action": "SCMP_ACT_ALLOW",
+            "args": null
         }
     ]
 }
