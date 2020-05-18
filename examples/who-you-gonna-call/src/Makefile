@@ -26,10 +26,10 @@ gen:
 
 tag ?= legacy
 
-build:
+docker-build:
 	docker build -t ${tag} .
 
-run:
+docker-run:
 	docker run --rm --name legacy -ti ${tag}
 
-.PHONY: clean run gen build run
+.PHONY: clean run gen docker-build docker-run
