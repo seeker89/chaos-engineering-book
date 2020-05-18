@@ -7,11 +7,11 @@
     "syscalls": [
 		{
 			"names": [
-                "accept",
                 "access",
                 "arch_prctl",
                 "bind",
                 "brk",
+                "close",
                 "execve",
                 "fstat",
                 "fsync",
