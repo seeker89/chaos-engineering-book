@@ -1,0 +1,42 @@
+{
+    "defaultAction": "SCMP_ACT_ERRNO",
+    "architectures": [
+        "SCMP_ARCH_X86_64",
+        "SCMP_ARCH_X86"
+    ],
+    "syscalls": [
+		{
+			"names": [
+                "accept",
+                "access",
+                "arch_prctl",
+                "bind",
+                "brk",
+                "close",
+                "execve",
+                "fstat",
+                "fsync",
+                "getpid",
+                "listen",
+                "mmap",
+                "mprotect",
+                "munmap",
+                "openat",
+                "read",
+                "rt_sigaction",
+                "setsockopt",
+                "socket",
+                "write",
+			],
+			"action": "SCMP_ACT_ALLOW",
+			"args": null
+        },
+		{
+			"names": [
+                "close"
+			],
+			"action": "SCMP_ACT_ERRNO",
+			"args": null
+		}
+    ]
+}
