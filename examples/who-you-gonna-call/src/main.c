@@ -80,6 +80,8 @@ int main()
             if (ret < 0) {
                 err(1, "error closing socket");
             }
+        } else {
+            printf("Error accepting connections");
         }
     }
 }
