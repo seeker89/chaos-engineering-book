@@ -24,4 +24,12 @@ run: gen $(TARGET)
 gen:
 	./generate_legacy.py
 
-.PHONY: clean run gen
+tag ?= legacy
+
+build:
+	docker build -t ${tag} .
+
+run:
+	docker run --rm --name legacy -ti ${tag}
+
+.PHONY: clean run gen build run
