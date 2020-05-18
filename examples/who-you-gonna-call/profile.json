@@ -12,7 +12,7 @@
                 "arch_prctl",
                 "bind",
                 "brk",
-                "close",
+                //"close",
                 "execve",
                 "fstat",
                 "fsync",
@@ -30,13 +30,6 @@
 			],
 			"action": "SCMP_ACT_ALLOW",
 			"args": null
-        },
-		{
-			"names": [
-                "close"
-			],
-			"action": "SCMP_ACT_ERRNO",
-			"args": null
-		}
+        }
     ]
 }
