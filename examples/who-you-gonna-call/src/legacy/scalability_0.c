@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "simulation_0.h"
 
 ssize_t scalability_0(int fd) {
@@ -13,13 +13,13 @@ ssize_t scalability_0(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &scalability_0_b, sizeof(a)); // maybe should be scalability_0_b? It wouldn't compile
-    write(fd, &scalability_0_scalability_0, sizeof(scalability_0_scalability_0));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &scalability_0_b, sizeof(a)); // maybe should be scalability_0_b? It wouldn't compile
+    respond(fd, &scalability_0_scalability_0, sizeof(scalability_0_scalability_0));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     simulation_0(fd);
     return 0; // TODO return something more meaningful

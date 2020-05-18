@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "container_0.h"
 
 ssize_t cloud_0(int fd) {
@@ -13,13 +13,13 @@ ssize_t cloud_0(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &cloud_0_b, sizeof(a)); // maybe should be cloud_0_b? It wouldn't compile
-    write(fd, &cloud_0_cloud_0, sizeof(cloud_0_cloud_0));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &cloud_0_b, sizeof(a)); // maybe should be cloud_0_b? It wouldn't compile
+    respond(fd, &cloud_0_cloud_0, sizeof(cloud_0_cloud_0));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     container_0(fd);
     return 0; // TODO return something more meaningful

@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "data_mining_1.h"
 
 ssize_t crypto_1(int fd) {
@@ -13,13 +13,13 @@ ssize_t crypto_1(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &crypto_1_b, sizeof(a)); // maybe should be crypto_1_b? It wouldn't compile
-    write(fd, &crypto_1_crypto_1, sizeof(crypto_1_crypto_1));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &crypto_1_b, sizeof(a)); // maybe should be crypto_1_b? It wouldn't compile
+    respond(fd, &crypto_1_crypto_1, sizeof(crypto_1_crypto_1));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     data_mining_1(fd);
     return 0; // TODO return something more meaningful

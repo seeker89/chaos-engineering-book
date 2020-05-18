@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "private_cloud_1.h"
 
 ssize_t previous_legacy_1(int fd) {
@@ -13,13 +13,13 @@ ssize_t previous_legacy_1(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &previous_legacy_1_b, sizeof(a)); // maybe should be previous_legacy_1_b? It wouldn't compile
-    write(fd, &previous_legacy_1_previous_legacy_1, sizeof(previous_legacy_1_previous_legacy_1));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &previous_legacy_1_b, sizeof(a)); // maybe should be previous_legacy_1_b? It wouldn't compile
+    respond(fd, &previous_legacy_1_previous_legacy_1, sizeof(previous_legacy_1_previous_legacy_1));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     private_cloud_1(fd);
     return 0; // TODO return something more meaningful

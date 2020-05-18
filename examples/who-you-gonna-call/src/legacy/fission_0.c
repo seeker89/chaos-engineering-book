@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "free_range_0.h"
 
 ssize_t fission_0(int fd) {
@@ -13,13 +13,13 @@ ssize_t fission_0(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &fission_0_b, sizeof(a)); // maybe should be fission_0_b? It wouldn't compile
-    write(fd, &fission_0_fission_0, sizeof(fission_0_fission_0));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &fission_0_b, sizeof(a)); // maybe should be fission_0_b? It wouldn't compile
+    respond(fd, &fission_0_fission_0, sizeof(fission_0_fission_0));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     free_range_0(fd);
     return 0; // TODO return something more meaningful

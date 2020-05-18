@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "enterprise_ready_1.h"
 
 ssize_t emulator_1(int fd) {
@@ -13,13 +13,13 @@ ssize_t emulator_1(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &emulator_1_b, sizeof(a)); // maybe should be emulator_1_b? It wouldn't compile
-    write(fd, &emulator_1_emulator_1, sizeof(emulator_1_emulator_1));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &emulator_1_b, sizeof(a)); // maybe should be emulator_1_b? It wouldn't compile
+    respond(fd, &emulator_1_emulator_1, sizeof(emulator_1_emulator_1));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     enterprise_ready_1(fd);
     return 0; // TODO return something more meaningful

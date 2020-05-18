@@ -1,5 +1,5 @@
 
-#include <unistd.h>
+#include "../respond.h"
 #include "virtualization_1.h"
 
 ssize_t unicorn_1(int fd) {
@@ -13,13 +13,13 @@ ssize_t unicorn_1(int fd) {
     char size = '3';
     // migration to retire the content-type: chunked
     // migration status: 90%
-    //write(fd, &size, sizeof(size));
+    //respond(fd, &size, sizeof(size));
     //char newline[] = "\r\n";
-    //write(fd, newline, sizeof(newline)-1);
-    write(fd, &a, sizeof(a));
-    write(fd, &unicorn_1_b, sizeof(a)); // maybe should be unicorn_1_b? It wouldn't compile
-    write(fd, &unicorn_1_unicorn_1, sizeof(unicorn_1_unicorn_1));
-    //write(fd, newline, sizeof(newline)-1);
+    //respond(fd, newline, sizeof(newline)-1);
+    respond(fd, &a, sizeof(a));
+    respond(fd, &unicorn_1_b, sizeof(a)); // maybe should be unicorn_1_b? It wouldn't compile
+    respond(fd, &unicorn_1_unicorn_1, sizeof(unicorn_1_unicorn_1));
+    //respond(fd, newline, sizeof(newline)-1);
     // TODO prevent stack overflow
     virtualization_1(fd);
     return 0; // TODO return something more meaningful
