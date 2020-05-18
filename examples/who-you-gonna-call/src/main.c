@@ -76,7 +76,10 @@ int main()
             write_content(client_fd);
             // don't forget to flush
             fsync(client_fd);
-            close(client_fd);
+            int ret = close(client_fd);
+            if (ret < 0) {
+                err(1, "error closing socket");
+            }
         }
     }
 }
