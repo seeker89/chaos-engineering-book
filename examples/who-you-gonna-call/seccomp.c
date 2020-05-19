@@ -19,6 +19,4 @@ int main(void)
 
     // write should succeed, but the pid will not
     fprintf(stdout, "getpid() == %d, error: %s\n", getpid(), strerror(errno));
-    // release the profiel
-    seccomp_release(ctx);
 }
