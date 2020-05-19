@@ -7,11 +7,12 @@
 int main(void)
 {
     scmp_filter_ctx ctx;
+    int rc;
 
     // disable everything by default, be returning EACCES (access denied)
     ctx = seccomp_init(SCMP_ACT_ERRNO(EACCES));
     // allow write only
-    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);
+    rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);
     // load the profile
     rc = seccomp_load(ctx);
 
