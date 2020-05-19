@@ -20,7 +20,7 @@ int main(void)
     rc = seccomp_load(ctx);
 
     // write should succeed, but the pid will not
-    fprintf(stdout, "getpid() == %d", getpid());
+    fprintf(stdout, "getpid() == %d\n", getpid());
 
     // release the seccomp context
     seccomp_release(ctx);
