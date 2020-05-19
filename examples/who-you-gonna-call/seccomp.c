@@ -8,7 +8,7 @@
 int main(void)
 {
     scmp_filter_ctx ctx;
-    int rc;
+    int rc; // note, that we totally avoid any error handling here...
 
     // disable everything by default, be returning EACCES (access denied)
     ctx = seccomp_init(SCMP_ACT_ERRNO(EACCES));
