@@ -25,7 +25,7 @@ int main(void)
     int error = errno;
 
     // write should succeed, but the pid will not
-    fprintf(stdout, "getpid() == %d, error: %s\n",  pid, strerror(error));
+    fprintf(stdout, "getpid() == %d, error: %s\n",  pid, strerror(error*-1));
 
     // release the seccomp context
     seccomp_release(ctx);
