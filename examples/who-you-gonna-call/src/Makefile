@@ -30,7 +30,7 @@ docker-build:
 	docker build -t ${tag} .
 
 docker-run:
-	docker run --rm --name legacy -ti --security-opt seccomp=../profile.json -p 8080:8080 ${tag}
+	docker run --rm --name legacy -d --security-opt seccomp=../profile.json -p 8080:8080 ${tag}
 
 profile:
 	curl https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json > ../profile.json
