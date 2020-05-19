@@ -24,11 +24,17 @@ char header[] = "HTTP/1.0 200 OK\r\n"
 "Content-Length: " CTN_LENGTH "\r\n"
 "\r\n";
 
+void sighandler(int n){
+    printf("bye\n");
+    _exit(0);
+}
+
 int main()
 {
     // fix to the bug from that other tracking system we retired years ago
     #if !defined(SOMETHING_REALLY_CIPTIC)
     signal(SIGPIPE, SIG_IGN);
+    signal(SIGINT, sighandler);
     #endif
     int res;
     char buf[BUFSIZE];
@@ -81,7 +87,7 @@ int main()
                 err(1, "error closing socket");
             }
         } else {
-            printf("Error accepting connections");
+            printf("Error accepting connections\n");
         }
     }
 }
