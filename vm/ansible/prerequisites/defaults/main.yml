@@ -40,6 +40,8 @@ packages_to_install:
   # man 3
   - manpages-posix
   - manpages-posix-dev
+  # seccomp
+  - libseccomp-dev
 
 packages_to_remove:
   - libreoffice-core
