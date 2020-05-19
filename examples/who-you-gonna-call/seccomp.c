@@ -8,7 +8,7 @@ int main(void)
     scmp_filter_ctx ctx;
     int rc; // note, that we totally avoid any error handling here...
 
-    // disable everything by default, be returning EPERM (access denied)
+    // disable everything by default, be returning EPERM (not allowed)
     ctx = seccomp_init(SCMP_ACT_ERRNO(EPERM));
     // allow write...
     rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);
