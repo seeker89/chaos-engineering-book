@@ -32,4 +32,7 @@ docker-build:
 docker-run:
 	docker run --rm --name legacy -ti --security-opt seccomp=../profile.json -p 8080:8080 ${tag}
 
+profile:
+	curl https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json > ../profile.json
+
 .PHONY: clean run gen docker-build docker-run
