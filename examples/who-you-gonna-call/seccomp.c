@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <seccomp.h>
 #include <errno.h>
+#include <string.h>
 
 int main(void)
 {
@@ -17,7 +18,7 @@ int main(void)
     rc = seccomp_load(ctx);
 
     // write should succeed, but the pid will not
-    fprintf(stdout, "My PID: %d, error: %d\n", getpid(), errno);
+    fprintf(stdout, "My PID: %d, error: %s\n", getpid(), strerror(errno));
     // release the profiel
     seccomp_release(ctx);
 }
