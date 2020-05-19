@@ -4,7 +4,6 @@
 #include <seccomp.h>
 #include <errno.h>
 #include <string.h>
-#include <sys/types.h>
 
 int main(void)
 {
@@ -20,12 +19,8 @@ int main(void)
     // load the profile
     rc = seccomp_load(ctx);
 
-    // get the pid
-    pid_t pid = getpid();
-    int error = errno;
-
     // write should succeed, but the pid will not
-    fprintf(stdout, "getpid() == %d, error: %s\n",  pid, strerror(error*-1));
+    fprintf(stdout, "getpid() == %d", getpid());
 
     // release the seccomp context
     seccomp_release(ctx);
