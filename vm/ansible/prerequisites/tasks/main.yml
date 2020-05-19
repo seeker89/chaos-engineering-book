@@ -95,6 +95,11 @@
     docker pull {{ item }}
   loop: "{{ docker_images_to_pull }}"
 
+- name: Retag some images
+  become: true
+  shell: |
+    docker tag ubuntu:focal-20200423 ubuntu:focal
+
 - name: Disable docker starting on boot
   shell: |
     sudo systemctl disable docker
@@ -194,8 +199,3 @@
   become: false
   shell: |
     gsettings set org.gnome.desktop.session idle-delay 0
-
-
-- name: Retag ubuntu:focal-20200423 as ubuntu:focal
-  shell: |
-    docker tag ubuntu:focal-20200423 ubuntu:focal
