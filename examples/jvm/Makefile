@@ -9,4 +9,7 @@ FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition: src
 	(cd src && ./gradlew assemble && ./gradlew build)
 	unzip src/build/distributions/FizzBuzzEnterpriseEdition.zip
 
-.PHONY:
+run:
+	./FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition
+
+.PHONY: run
