@@ -42,6 +42,8 @@ packages_to_install:
   - manpages-posix-dev
   # seccomp
   - libseccomp-dev
+  # java
+  - openjdk-8-jdk
 
 packages_to_remove:
   - libreoffice-core
