@@ -1,12 +1,12 @@
 CFLAGS=-O0
 
-all: FizzBuzzEnterpriseEdition.jar
+all: FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition
 
 src:
 	git clone https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition.git src
 
-FizzBuzzEnterpriseEdition.jar: src
+FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition: src
 	(cd src && ./gradlew assemble && ./gradlew build)
-	cp src/build/libs/FizzBuzzEnterpriseEdition.jar .
+	unzip src/build/distributions/FizzBuzzEnterpriseEdition.zip
 
 .PHONY:
