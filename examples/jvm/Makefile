@@ -12,4 +12,7 @@ FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition: src
 run:
 	./FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition
 
-.PHONY: run
+run2:
+	java -classpath "./FizzBuzzEnterpriseEdition/lib/*" com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
+
+.PHONY: run run2
