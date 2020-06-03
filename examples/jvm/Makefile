@@ -20,7 +20,7 @@ run3:
 
 
 example1-compile:
-	javac ./org/my/AppMain.java
+	javac ./org/my/example1.java
 example1-run:
 	java org.my.Example1
 example1-bytecode:
