@@ -199,3 +199,12 @@
   become: false
   shell: |
     gsettings set org.gnome.desktop.session idle-delay 0
+
+- name: Add auto-login
+  become: true
+  lineinfile:
+    path: /etc/gdm3/custom.conf
+    line: "{{ item }}"
+  loop:
+    - "AutomaticLoginEnable = true"
+    - "AutomaticLogin = chaos"
