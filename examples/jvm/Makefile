@@ -40,4 +40,4 @@ example2-bytecode:
 agent1.jar: org/agent/Agent.java org/agent/ClassPrinter.java
 	javac org/agent/Agent.java
 	javac org/agent/ClassPrinter.java
-	jar vcf agent1.jar org/agent
+	jar vcmf org/agent/manifest.mf agent1.jar org/agent
