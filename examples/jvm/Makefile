@@ -41,3 +41,8 @@ agent1.jar: org/agent/Agent.java org/agent/ClassPrinter.java
 	javac org/agent/Agent.java
 	javac org/agent/ClassPrinter.java
 	jar vcmf org/agent/manifest.mf agent1.jar org/agent
+
+agent2.jar: org/agent2/Agent.java org/agent2/ClassInjector.java org/agent2/manifest.mf
+	javac org/agent2/Agent.java
+	javac org/agent2/ClassPrinter.java
+	jar vcmf org/agent2/manifest.mf agent2.jar org/agent
