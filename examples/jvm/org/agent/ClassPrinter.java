@@ -2,7 +2,7 @@ package org.agent;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
-import java.lang.instrument.ProtectionDomain;
+import java.security.ProtectionDomain;
 
 
 public class ClassPrinter implements ClassFileTransformer {
