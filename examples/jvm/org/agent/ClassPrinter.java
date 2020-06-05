@@ -5,7 +5,7 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 
-public class ClassPrinter implements ClassFileTransformer {
+class ClassPrinter implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader,
                             String className,
                             Class<?> classBeingRedefined,
