@@ -12,5 +12,6 @@ public class ClassPrinter implements ClassFileTransformer {
                             ProtectionDomain protectionDomain,
                             byte[] classfileBuffer) throws IllegalClassFormatException {
     System.out.println("Found class: " + className + " (" + classfileBuffer.length + " bytes)");
+    return classfileBuffer;
   }
 }
