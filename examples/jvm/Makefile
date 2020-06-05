@@ -35,7 +35,7 @@ example2-bytecode:
 
 .PHONY: run run2 run3 example1-compile example1-run example1-bytecode example2-compile example2-run example2-bytecode
 
-agent1.jar: org/agent/agent.java org/agent/classprinter.java
-	javac org/agent/agent.java
-	javac org/agent/classprinter.java
+agent1.jar: org/agent/Agent.java org/agent/ClassPrinter.java
+	javac org/agent/Agent.java
+	javac org/agent/ClassPrinter.java
 	jar vcf agent1.jar org/agent
