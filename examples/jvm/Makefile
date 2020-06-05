@@ -25,6 +25,8 @@ example1-run:
 	java org.my.Example1
 example1-bytecode:
 	javap -c org.my.Example1
+example1-agent:
+	java -javaagent:./agent1.jar org.my.Example1
 
 example2-compile:
 	javac ./org/my/example2.java
