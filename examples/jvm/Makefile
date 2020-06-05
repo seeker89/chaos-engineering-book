@@ -34,3 +34,8 @@ example2-bytecode:
 	javap -c org.my.Example2
 
 .PHONY: run run2 run3 example1-compile example1-run example1-bytecode example2-compile example2-run example2-bytecode
+
+agent1.jar: org/agent/agent.java org/agent/classprinter.java
+	javac org/agent/agent.java
+	javac org/agent/classprinter.java
+	jar vcf agent1.jar org/agent
