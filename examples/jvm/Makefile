@@ -37,7 +37,7 @@ example2-bytecode:
 
 .PHONY: run run2 run3 example1-compile example1-run example1-bytecode example2-compile example2-run example2-bytecode
 
-agent1.jar: org/agent/Agent.java org/agent/ClassPrinter.java
+agent1.jar: org/agent/Agent.java org/agent/ClassPrinter.java org/agent/manifest.mf
 	javac org/agent/Agent.java
 	javac org/agent/ClassPrinter.java
 	jar vcmf org/agent/manifest.mf agent1.jar org/agent
