@@ -38,7 +38,7 @@ public class ClassInjector implements ClassFileTransformer {
               Opcodes.INVOKESTATIC,
               "org/agent2/ClassInjector",
               "throwIOException",
-              "()Ljava/io/IOException;",
+              "()V",
               false // not a method
           ));
           method.maxStack += 1;
