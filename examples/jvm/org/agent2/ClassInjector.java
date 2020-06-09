@@ -24,7 +24,7 @@ public class ClassInjector implements ClassFileTransformer {
                             ProtectionDomain protectionDomain,
                             byte[] classfileBuffer) throws IllegalClassFormatException {
     if (className.equals(this.targetClassName)){
-      System.out.println("[CHAOS] TARGET ACQUIRED: " + className + " (" + classfileBuffer.length + " bytes)");
+      System.err.println("[CHAOS] TARGET ACQUIRED: " + className + " (" + classfileBuffer.length + " bytes)");
 
       ClassNode classNode = new ClassNode();
       new ClassReader(classfileBuffer).accept(classNode, 0);
@@ -41,12 +41,12 @@ public class ClassInjector implements ClassFileTransformer {
           ));
           method.maxStack += 1;
           method.instructions.insertBefore(method.instructions.getFirst(), instructions);
-          System.out.println("[CHAOS] Method " + method.name + " modified");
+          System.err.println("[CHAOS] Method " + method.name + " modified");
         });
         final ClassWriter classWriter = new ClassWriter(0);
         classNode.accept(classWriter);
         byte[] bytes = classWriter.toByteArray();
-        System.out.println("[CHAOS] Rewrote: " + className + " (" + bytes.length + " bytes)");
+        System.err.println("[CHAOS] Rewrote: " + className + " (" + bytes.length + " bytes)");
         return bytes;
     }
     return classfileBuffer;
@@ -54,7 +54,7 @@ public class ClassInjector implements ClassFileTransformer {
 
   public static void throwIOException() throws IOException
   {
-      System.out.println("[CHAOS] BOOM! Throwing");
+      System.err.println("[CHAOS] BOOM! Throwing");
       throw new IOException("CHAOS");
   }
 }
