@@ -18,6 +18,13 @@ run2:
 run3:
 	javap -classpath "./FizzBuzzEnterpriseEdition/lib/*" -c com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
 
+run4:
+	java -javaagent:./agent1.jar -classpath "./FizzBuzzEnterpriseEdition/lib/*" com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
+
+run5:
+	java -javaagent:./agent2.jar -classpath "./FizzBuzzEnterpriseEdition/lib/*" com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
+
+
 
 example1-compile:
 	javac ./org/my/example1.java
