@@ -37,7 +37,7 @@ class ClassInjector implements ClassFileTransformer {
           instructions.add(new MethodInsnNode(
               Opcodes.INVOKESTATIC,
               "org/agent2/ClassInjector",
-              "output",
+              "throwIOException",
               "()Ljava/io/IOException;",
               false // not a method
           ));
