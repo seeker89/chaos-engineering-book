@@ -37,7 +37,8 @@ class ClassInjector implements ClassFileTransformer {
               Opcodes.INVOKESTATIC,
               "org/agent2/ClassInjector",
               "output",
-              "()Ljava/io/IOException;"
+              "()Ljava/io/IOException;",
+              false // not a method
           ));
           method.maxStack += 1;
           method.instructions.insertBefore(
