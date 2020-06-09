@@ -1,4 +1,4 @@
-package org.agent;
+package org.agent2;
 
 import java.lang.instrument.Instrumentation;
 
