@@ -14,7 +14,7 @@ import jdk.internal.org.objectweb.asm.Opcodes;
 
 
 
-class ClassInjector implements ClassFileTransformer {
+public class ClassInjector implements ClassFileTransformer {
 
     public String targetClassName = "com/seriouscompany/business/java/fizzbuzz/packagenamingpackage/impl/strategies/SystemOutFizzBuzzOutputStrategy";
 
