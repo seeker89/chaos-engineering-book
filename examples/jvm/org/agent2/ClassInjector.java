@@ -46,7 +46,7 @@ class ClassInjector implements ClassFileTransformer {
               method.instructions.getFirst(),
               instructions
           );
-          System.out.println("[CHAOS] Method " + method.name " modified");
+          System.out.println("[CHAOS] Method " + method.name + " modified");
         });
         final ClassWriter classWriter = new ClassWriter(0);
         classNode.accept(classWriter);
