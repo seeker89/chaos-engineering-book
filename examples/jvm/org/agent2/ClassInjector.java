@@ -27,7 +27,8 @@ class ClassInjector implements ClassFileTransformer {
       System.out.println("TARGET ACQUIRED: " + className + " (" + classfileBuffer.length + " bytes)");
 
       ClassNode classNode = new ClassNode();
-      new ClassReader(classFileBuffer).accept(classNode, 0);
+      ClassReader classReader = new ClassReader(classFileBuffer);
+      classReader.accept(classNode, 0);
       classNode.methods.stream()
         .filter(method -> method.name.equals("output"))
         .forEach(method -> {
