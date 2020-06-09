@@ -56,6 +56,7 @@ class ClassInjector implements ClassFileTransformer {
 
   public static void throwIOException() throws IOException
   {
+      System.out.println("BOOM. Is this going to be handled?");
       throw new IOException();
   }
 }
