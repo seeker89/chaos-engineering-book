@@ -52,6 +52,7 @@ class ClassInjector implements ClassFileTransformer {
         classNode.accept(classWriter);
         byte[] bytes = classWriter.toByteArray();
         System.out.println("[CHAOS] Rewrote: " + className + " (" + bytes.length + " bytes)");
+        return bytes;
     }
     return classfileBuffer;
   }
