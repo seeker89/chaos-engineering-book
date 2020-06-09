@@ -27,12 +27,10 @@ public class ClassInjector implements ClassFileTransformer {
       System.out.println("[CHAOS] TARGET ACQUIRED: " + className + " (" + classfileBuffer.length + " bytes)");
 
       ClassNode classNode = new ClassNode();
-      ClassReader classReader = new ClassReader(classfileBuffer);
-      classReader.accept(classNode, 0);
+      new ClassReader(classfileBuffer).accept(classNode, 0);
       classNode.methods.stream()
         .filter(method -> method.name.equals("output"))
         .forEach(method -> {
-
           InsnList instructions = new InsnList();
           instructions.add(new MethodInsnNode(
               Opcodes.INVOKESTATIC,
@@ -42,10 +40,7 @@ public class ClassInjector implements ClassFileTransformer {
               false // not a method
           ));
           method.maxStack += 1;
-          method.instructions.insertBefore(
-              method.instructions.getFirst(),
-              instructions
-          );
+          method.instructions.insertBefore(method.instructions.getFirst(), instructions);
           System.out.println("[CHAOS] Method " + method.name + " modified");
         });
         final ClassWriter classWriter = new ClassWriter(0);
@@ -59,7 +54,7 @@ public class ClassInjector implements ClassFileTransformer {
 
   public static void throwIOException() throws IOException
   {
-      System.out.println("BOOM. Is this going to be handled?");
-      throw new IOException();
+      System.out.println("[CHAOS] BOOM! Throwing");
+      throw new IOException("CHAOS");
   }
 }
