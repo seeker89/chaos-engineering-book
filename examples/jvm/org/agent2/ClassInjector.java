@@ -1,5 +1,8 @@
 package org.agent2;
 
+import java.io.IOException;
+import java.util.List;
+
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
@@ -7,6 +10,8 @@ import java.security.ProtectionDomain;
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.tree.*;
+import jdk.internal.org.objectweb.asm.Opcodes;
+
 
 
 class ClassInjector implements ClassFileTransformer {
