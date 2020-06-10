@@ -50,6 +50,6 @@ agent1.jar: org/agent/Agent.java org/agent/ClassPrinter.java org/agent/manifest.
 	jar vcmf org/agent/manifest.mf agent1.jar org/agent
 
 agent2.jar: org/agent2/Agent.java org/agent2/ClassInjector.java org/agent2/manifest.mf
-	javac -XDignore.symbol.file=true org/agent2/Agent.java
-	javac -XDignore.symbol.file=true org/agent2/ClassInjector.java
+	javac -XDignore.symbol.file org/agent2/Agent.java
+	javac -XDignore.symbol.file org/agent2/ClassInjector.java
 	jar vcmf org/agent2/manifest.mf agent2.jar org/agent2
