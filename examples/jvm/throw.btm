@@ -1,5 +1,5 @@
 RULE throw an exception at output
-CLASS SystemOutFizzBuzzOutputStrategy
+CLASS com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.strategies.SystemOutFizzBuzzOutputStrategy
 METHOD output
 AT ENTRY
 IF true
