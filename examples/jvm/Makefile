@@ -38,6 +38,12 @@ run6:
 		-classpath "./FizzBuzzEnterpriseEdition/lib/*" \
 		com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
 
+run7:
+	java \
+		-javaagent:byte-monkey.jar=mode:fault,filter:com/seriouscompany/business/java/fizzbuzz/packagenamingpackage/impl/strategies/SystemOutFizzBuzzOutputStrategy \
+		-classpath "./FizzBuzzEnterpriseEdition/lib/*" \
+		com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
+
 
 
 example1-compile:
