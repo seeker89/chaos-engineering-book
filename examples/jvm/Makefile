@@ -1,6 +1,6 @@
 CFLAGS=-O0
 
-all: FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition byteman-download-4.0.11 bytemonkey
+all: FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition byteman-download-4.0.11 byte-monkey.jar
 
 src:
 	git clone https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition.git src
@@ -10,10 +10,8 @@ byteman-download-4.0.11:
 	unzip byteman-download-4.0.11-bin.zip
 	rm byteman-download-4.0.11-bin.zip
 
-bytemonkey:
+byte-monkey.jar:
 	wget https://github.com/mrwilson/byte-monkey/releases/download/1.0.0/byte-monkey.jar
-	unzip byte-monkey.jar -d byte-monkey
-	rm byte-monkey.jar
 
 FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition: src
 	(cd src && ./gradlew assemble && ./gradlew build)
