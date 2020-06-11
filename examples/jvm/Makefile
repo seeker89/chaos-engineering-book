@@ -40,7 +40,7 @@ run6:
 
 run7:
 	java \
-		-javaagent:byte-monkey.jar=mode:fault,filter:com/seriouscompany/business/java/fizzbuzz/packagenamingpackage/impl/strategies/SystemOutFizzBuzzOutputStrategy \
+		-javaagent:byte-monkey.jar=mode:fault,rate:0.5,filter:com/seriouscompany/business/java/fizzbuzz/packagenamingpackage/impl/strategies/SystemOutFizzBuzzOutputStrategy/output \
 		-classpath "./FizzBuzzEnterpriseEdition/lib/*" \
 		com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
 
