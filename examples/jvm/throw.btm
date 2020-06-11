@@ -1,0 +1,8 @@
+RULE throw an exception at output
+CLASS SystemOutFizzBuzzOutputStrategy
+METHOD output
+AT ENTRY
+IF true
+DO traceln("entering the method output")
+DO throw new java.io.IOException("BOOM")
+ENDRULE
