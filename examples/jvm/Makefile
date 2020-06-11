@@ -1,9 +1,14 @@
 CFLAGS=-O0
 
-all: FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition
+all: FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition byteman-download-4.0.11
 
 src:
 	git clone https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition.git src
+
+byteman-download-4.0.11:
+	wget https://downloads.jboss.org/byteman/4.0.11/byteman-download-4.0.11-bin.zip
+	unzip byteman-download-4.0.11-bin.zip
+	rm byteman-download-4.0.11-bin.zip
 
 FizzBuzzEnterpriseEdition/bin/FizzBuzzEnterpriseEdition: src
 	(cd src && ./gradlew assemble && ./gradlew build)
