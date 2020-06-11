@@ -29,6 +29,12 @@ run4:
 run5:
 	java -javaagent:./agent2.jar -classpath "./FizzBuzzEnterpriseEdition/lib/*" com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
 
+run6:
+	java \
+		-javaagent:./byteman-download-4.0.11/lib/byteman.jar=script:throw.btm \
+		-classpath "./FizzBuzzEnterpriseEdition/lib/*" \
+		com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Main
+
 
 
 example1-compile:
