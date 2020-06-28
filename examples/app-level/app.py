@@ -1,15 +1,17 @@
 import uuid
 import json
 import redis
-from flask import Flask, request, make_response, render_template_string
+from flask import Flask, request, redirect, make_response, render_template_string
 
 COOKIE_NAME = "sessionID"
 
 def get_session_id():
     return request.cookies.get(COOKIE_NAME)
 
-def set_session_id(response):
-    session_id = uuid.uuid4()
+def set_session_id(response, override=False):
+    session_id = get_session_id()
+    if not session_id or override:
+        session_id = uuid.uuid4()
     session_id = response.set_cookie(COOKIE_NAME, str(session_id))
 
 
@@ -19,7 +21,7 @@ def get_interests(session):
 
 def store_interests(session, query):
     stored = get_interests(session)
-    if query not in stored:
+    if query and query not in stored:
         stored.append(query)
     redis_client.set(session, json.dumps(stored))
     return stored
@@ -28,7 +30,7 @@ def store_interests(session, query):
 app = Flask(__name__)
 @app.route("/")
 def index():
-    session_id = get_session_id()
+    """ Home page, search form """
     resp = make_response("""
     <html><body>
         <form action="/search" method="POST">
@@ -36,14 +38,15 @@ def index():
             <p><input type='text' name='query'/>
             <input type='submit' value='Search'/></p>
         </form>
+        <p><a href="/search">Recommendations</a>. <a href="/reset">Reset</a>. </p>
     </body></html>
     """)
-    if not session_id:
-        set_session_id(resp)
+    set_session_id(resp)
     return resp
 
-@app.route("/search", methods=["POST"])
+@app.route("/search", methods=["POST", "GET"])
 def search():
+    """ Handle search, suggest other products """
     query = request.form.get("query")
     session_id = get_session_id()
     new_interests = store_interests(session_id, query)
@@ -55,10 +58,17 @@ def search():
     resp = make_response(render_template_string("""
     <html><body>
         <p><h3>Hmmm...</h3></p>
-        <p>I didn't find any "{{ query }}".</p>
-        <p>But since you're interested in {{ new_interests }}, why don't you try...
-        <a href="https://youtube.com/watch?v=dQw4w9WgXcQ">this</a></p>
+        {% if query %}<p>I didn't find any "{{ query }}".</p>{% endif %}
+        <p>Since you're interested in {{ new_interests }}, why don't you try...
+        <a href="https://youtube.com/watch?v=dQw4w9WgXcQ">this amazing product</a>!</p>
         <p>Session ID: {{ session_id }}. <a href="/">Go back.</a></p>
     </body></html>
     """, **kwargs))
+    return resp
+
+@app.route("/reset")
+def reset():
+    """ Resets the session ID cookie """
+    resp = make_response(redirect("/"))
+    set_session_id(resp, override=True)
     return resp
