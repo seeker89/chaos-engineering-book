@@ -15,16 +15,22 @@ def set_session_id(response, override=False):
     session_id = response.set_cookie(COOKIE_NAME, str(session_id))
 
 
-redis_client = redis.Redis(host="localhost", port=6379, db=0)
+CACHE_CLIENT = redis.Redis(host="localhost", port=6379, db=0)
+
 def get_interests(session):
-    return json.loads(redis_client.get(session) or "[]")
+    return json.loads(CACHE_CLIENT.get(session) or "[]")
 
 def store_interests(session, query):
     stored = get_interests(session)
     if query and query not in stored:
         stored.append(query)
-    redis_client.set(session, json.dumps(stored))
+    CACHE_CLIENT.set(session, json.dumps(stored))
     return stored
+
+
+def recommend_other_products(query, interests):
+    """ Return a list of recommended products for a user, based on interests """
+    return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
 
 
 app = Flask(__name__)
@@ -54,13 +60,14 @@ def search():
         query=query,
         session_id=session_id,
         new_interests=new_interests,
+        recommendations=recommend_other_products(query, new_interests),
     )
     resp = make_response(render_template_string("""
     <html><body>
         <p><h3>Hmmm...</h3></p>
         {% if query %}<p>I didn't find any "{{ query }}".</p>{% endif %}
         <p>Since you're interested in {{ new_interests }}, why don't you try...
-        <a href="https://youtube.com/watch?v=dQw4w9WgXcQ">this amazing product</a>!</p>
+        {% for k, v in recommendations.items() %} <a href="{{ v }}">{{ k }}</a>{% endfor %}!</p>
         <p>Session ID: {{ session_id }}. <a href="/">Go back.</a></p>
     </body></html>
     """, **kwargs))
