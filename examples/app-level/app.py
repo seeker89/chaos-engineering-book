@@ -6,9 +6,11 @@ from flask import Flask, request, redirect, make_response, render_template_strin
 COOKIE_NAME = "sessionID"
 
 def get_session_id():
+    """ Read session id from cookies, if present """
     return request.cookies.get(COOKIE_NAME)
 
 def set_session_id(response, override=False):
+    """ Store session id in a cookie """
     session_id = get_session_id()
     if not session_id or override:
         session_id = uuid.uuid4()
@@ -18,9 +20,11 @@ def set_session_id(response, override=False):
 CACHE_CLIENT = redis.Redis(host="localhost", port=6379, db=0)
 
 def get_interests(session):
+    """ Retrieve interests stored in the cache for the session id """
     return json.loads(CACHE_CLIENT.get(session) or "[]")
 
 def store_interests(session, query):
+    """ Store user interest in the cache backend """
     stored = get_interests(session)
     if query and query not in stored:
         stored.append(query)
@@ -36,7 +40,7 @@ def recommend_other_products(query, interests):
 app = Flask(__name__)
 @app.route("/")
 def index():
-    """ Home page, search form """
+    """ Handle the home page, search form """
     resp = make_response("""
     <html><body>
         <form action="/search" method="POST">
@@ -75,7 +79,7 @@ def search():
 
 @app.route("/reset")
 def reset():
-    """ Resets the session ID cookie """
+    """ Reset the session ID cookie """
     resp = make_response(redirect("/"))
     set_session_id(resp, override=True)
     return resp
