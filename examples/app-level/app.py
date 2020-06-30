@@ -57,8 +57,8 @@ def index():
 @app.route("/search", methods=["POST", "GET"])
 def search():
     """ Handle search, suggest other products """
-    query = flask.request.form.get("query")
     session_id = get_session_id()
+    query = flask.request.form.get("query")
     new_interests = store_interests(session_id, query)
     kwargs = dict(
         query=query,
