@@ -1,7 +1,4 @@
-import uuid
-import json
-import redis
-import flask
+import uuid, json, redis, flask
 
 COOKIE_NAME = "sessionID"
 
@@ -14,7 +11,7 @@ def set_session_id(response, override=False):
     session_id = get_session_id()
     if not session_id or override:
         session_id = uuid.uuid4()
-    session_id = response.set_cookie(COOKIE_NAME, str(session_id))
+    response.set_cookie(COOKIE_NAME, str(session_id))
 
 
 CACHE_CLIENT = redis.Redis(host="localhost", port=6379, db=0)
@@ -38,6 +35,7 @@ def recommend_other_products(query, interests):
 
 
 app = flask.Flask(__name__)
+
 @app.route("/")
 def index():
     """ Handle the home page, search form """
@@ -63,8 +61,7 @@ def search():
     recommendations = recommend_other_products(query, new_interests)
     return flask.make_response(flask.render_template_string("""
     <html><body>
-        <p><h3>Hmmm...</h3></p>
-        {% if query %}<p>I didn't find any "{{ query }}".</p>{% endif %}
+        {% if query %}<h3>I didn't find anything for "{{ query }}"</h3>{% endif %}
         <p>Since you're interested in {{ new_interests }}, why don't you try...
         {% for k, v in recommendations.items() %} <a href="{{ v }}">{{ k }}</a>{% endfor %}!</p>
         <p>Session ID: {{ session_id }}. <a href="/">Go back.</a></p>
