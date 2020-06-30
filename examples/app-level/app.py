@@ -24,11 +24,11 @@ def get_interests(session):
     return json.loads(CACHE_CLIENT.get(session) or "[]")
 
 def store_interests(session, query):
-    """ Store user interest in the cache backend """
+    """ Store last three queries in the cache backend """
     stored = get_interests(session)
     if query and query not in stored:
         stored.append(query)
-    CACHE_CLIENT.set(session, json.dumps(stored))
+    CACHE_CLIENT.set(session, json.dumps(stored[-2:]))
     return stored
 
 
