@@ -60,13 +60,8 @@ def search():
     session_id = get_session_id()
     query = flask.request.form.get("query")
     new_interests = store_interests(session_id, query)
-    kwargs = dict(
-        query=query,
-        session_id=session_id,
-        new_interests=new_interests,
-        recommendations=recommend_other_products(query, new_interests),
-    )
-    resp = flask.make_response(flask.render_template_string("""
+    recommendations = recommend_other_products(query, new_interests)
+    return flask.make_response(flask.render_template_string("""
     <html><body>
         <p><h3>Hmmm...</h3></p>
         {% if query %}<p>I didn't find any "{{ query }}".</p>{% endif %}
@@ -74,8 +69,12 @@ def search():
         {% for k, v in recommendations.items() %} <a href="{{ v }}">{{ k }}</a>{% endfor %}!</p>
         <p>Session ID: {{ session_id }}. <a href="/">Go back.</a></p>
     </body></html>
-    """, **kwargs))
-    return resp
+    """,
+        session_id=session_id,
+        query=query,
+        new_interests=new_interests,
+        recommendations=recommendations,
+    ))
 
 @app.route("/reset")
 def reset():
