@@ -25,7 +25,8 @@ def store_interests(session, query):
     stored = get_interests(session)
     if query and query not in stored:
         stored.append(query)
-    CACHE_CLIENT.set(session, json.dumps(stored[-2:]))
+    stored = stored[-3:]
+    CACHE_CLIENT.set(session, json.dumps(stored))
     return stored
 
 
