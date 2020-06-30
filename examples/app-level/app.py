@@ -1,13 +1,13 @@
 import uuid
 import json
 import redis
-from flask import Flask, request, redirect, make_response, render_template_string
+import flask
 
 COOKIE_NAME = "sessionID"
 
 def get_session_id():
     """ Read session id from cookies, if present """
-    return request.cookies.get(COOKIE_NAME)
+    return flask.request.cookies.get(COOKIE_NAME)
 
 def set_session_id(response, override=False):
     """ Store session id in a cookie """
@@ -37,11 +37,11 @@ def recommend_other_products(query, interests):
     return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
 
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 @app.route("/")
 def index():
     """ Handle the home page, search form """
-    resp = make_response("""
+    resp = flask.make_response("""
     <html><body>
         <form action="/search" method="POST">
             <p><h3>What would you like to buy today?</h3></p>
@@ -57,7 +57,7 @@ def index():
 @app.route("/search", methods=["POST", "GET"])
 def search():
     """ Handle search, suggest other products """
-    query = request.form.get("query")
+    query = flask.request.form.get("query")
     session_id = get_session_id()
     new_interests = store_interests(session_id, query)
     kwargs = dict(
@@ -66,7 +66,7 @@ def search():
         new_interests=new_interests,
         recommendations=recommend_other_products(query, new_interests),
     )
-    resp = make_response(render_template_string("""
+    resp = flask.make_response(flask.render_template_string("""
     <html><body>
         <p><h3>Hmmm...</h3></p>
         {% if query %}<p>I didn't find any "{{ query }}".</p>{% endif %}
@@ -80,6 +80,6 @@ def search():
 @app.route("/reset")
 def reset():
     """ Reset the session ID cookie """
-    resp = make_response(redirect("/"))
+    resp = flask.make_response(flask.redirect("/"))
     set_session_id(resp, override=True)
     return resp
