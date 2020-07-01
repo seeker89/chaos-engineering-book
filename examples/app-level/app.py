@@ -1,4 +1,4 @@
-import uuid, json, redis, flask
+import uuid, os, json, redis, flask
 
 COOKIE_NAME = "sessionID"
 
