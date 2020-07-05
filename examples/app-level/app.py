@@ -58,7 +58,10 @@ def search():
     """ Handle search, suggest other products """
     session_id = get_session_id()
     query = flask.request.form.get("query")
-    new_interests = store_interests(session_id, query)
+    try:
+        new_interests = store_interests(session_id, query)
+    except redis.exceptions.RedisError:
+        new_interests = []
     recommendations = recommend_other_products(query, new_interests)
     return flask.make_response(flask.render_template_string("""
     <html><body>
