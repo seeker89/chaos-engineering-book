@@ -32,7 +32,7 @@ def store_interests(session, query):
 
 def recommend_other_products(query, interests):
     """ Return a list of recommended products for a user, based on interests """
-    if len(interests):
+    if interests:
         return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
     return {}
 
@@ -64,7 +64,7 @@ def search():
         new_interests = store_interests(session_id, query)
     except redis.exceptions.RedisError as exc:
         print("LOG: redis error %s", str(exc))
-        new_interests = []
+        new_interests = None
     recommendations = recommend_other_products(query, new_interests)
     return flask.make_response(flask.render_template_string("""
     <html><body>
