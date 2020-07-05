@@ -32,7 +32,9 @@ def store_interests(session, query):
 
 def recommend_other_products(query, interests):
     """ Return a list of recommended products for a user, based on interests """
-    return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
+    if len(interests):
+        return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
+    return {}
 
 
 app = flask.Flask(__name__)
