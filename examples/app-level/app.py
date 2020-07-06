@@ -1,5 +1,18 @@
 import uuid, os, json, redis, flask
 
+# chaos stuff
+def raise_rediserror_every_other_time(func):
+    import os
+    if os.environ.get("CHAOS") != "true":
+        return func
+    counter = 0
+    def wrapped():
+        counter += 1
+        if counter % 2 == 0:
+            raise redis.exceptions.RedisError("CHAOS")
+        return func()
+    return wrapped
+
 COOKIE_NAME = "sessionID"
 
 def get_session_id():
@@ -32,7 +45,9 @@ def store_interests(session, query):
 
 def recommend_other_products(query, interests):
     """ Return a list of recommended products for a user, based on interests """
-    return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
+    if interests:
+        return {"this amazing product": "https://youtube.com/watch?v=dQw4w9WgXcQ"}
+    return {}
 
 
 app = flask.Flask(__name__)
@@ -58,7 +73,11 @@ def search():
     """ Handle search, suggest other products """
     session_id = get_session_id()
     query = flask.request.form.get("query")
-    new_interests = store_interests(session_id, query)
+    try:
+        new_interests = store_interests(session_id, query)
+    except redis.exceptions.RedisError as exc:
+        print("LOG: redis error %s", str(exc))
+        new_interests = None
     recommendations = recommend_other_products(query, new_interests)
     return flask.make_response(flask.render_template_string("""
     <html><body>
