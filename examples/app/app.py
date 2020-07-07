@@ -70,7 +70,7 @@ def search():
     try:
         new_interests = store_interests(session_id, query)
     except redis.exceptions.RedisError as exc:
-        print("LOG: redis error %s", str(exc))
+        print("LOG: redis error %s" % str(exc))
         new_interests = None
     recommendations = recommend_other_products(query, new_interests)
     return flask.make_response(flask.render_template_string("""
