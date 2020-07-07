@@ -1,6 +1,10 @@
 run: install
 	FLASK_ENV=development FLASK_APP=app.py python3 -m flask run
 
+run_chaos: install
+	CHAOS=true CHAOS_DELAY_SECONDS=0.1 \
+		FLASK_ENV=development FLASK_APP=app.py python3 -m flask run
+
 install:
 	pip3 install --user -r requirements.txt
 
@@ -12,4 +16,4 @@ bench:
 		-p query.txt \
 		http://127.0.0.1:5000/search
 
-.PHONY: run install bench
+.PHONY: run run_chaos install bench
