@@ -2,7 +2,7 @@ import os
 import redis
 
 
-def raise_rediserror_every_other_time(func):
+def raise_rediserror_every_other_time_if_enabled(func):
     """ Decorator, raises an exception every other call to the wrapped function """
     if os.environ.get("CHAOS") != "true":
         return func

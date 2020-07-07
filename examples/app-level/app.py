@@ -22,7 +22,7 @@ CACHE_CLIENT = redis.Redis(host="localhost", port=6379, db=0)
 
 # Chaos experiment 2 - uncomment this to raise an exception every other call
 #import chaos2
-#@chaos2.raise_rediserror_every_other_time
+#@chaos2.raise_rediserror_every_other_time_if_enabled
 def get_interests(session):
     """ Retrieve interests stored in the cache for the session id """
     return json.loads(CACHE_CLIENT.get(session) or "[]")
