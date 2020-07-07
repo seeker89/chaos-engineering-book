@@ -208,3 +208,14 @@
   loop:
     - "AutomaticLoginEnable = true"
     - "AutomaticLogin = chaos"
+
+- name: Download and build redis
+  shell: |
+    wget http://download.redis.io/releases/redis-6.0.5.tar.gz
+    tar xzf redis-6.0.5.tar.gz
+    cd redis-6.0.5
+    make
+    sudo mv ./src/redis-server /usr/bin/redis-server
+    sudo mv ./src/redis-cli /usr/bin/redis-cli
+    rm redis-6.0.5.tar.gz
+    exit 0
