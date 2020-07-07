@@ -1,17 +1,4 @@
-import uuid, os, json, redis, flask
-
-# chaos stuff
-def raise_rediserror_every_other_time(func):
-    import os
-    if os.environ.get("CHAOS") != "true":
-        return func
-    counter = 0
-    def wrapped():
-        counter += 1
-        if counter % 2 == 0:
-            raise redis.exceptions.RedisError("CHAOS")
-        return func()
-    return wrapped
+import uuid, json, redis, flask
 
 COOKIE_NAME = "sessionID"
 
