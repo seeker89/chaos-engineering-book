@@ -4,4 +4,12 @@ run: install
 install:
 	pip3 install --user -r requirements.txt
 
-.PHONY: run install
+bench:
+	echo "query=Apples" > query.txt && \
+	ab -c 1 -t 10 \
+		-H "Cookie: sessionID=something" \
+		-H "Content-type: application/x-www-form-urlencoded" \
+		-p query.txt \
+		http://127.0.0.1:5000/search
+
+.PHONY: run install bench
