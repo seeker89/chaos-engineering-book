@@ -4,7 +4,7 @@ import redis
 
 def raise_rediserror_every_other_time_if_enabled(func):
     """ Decorator, raises an exception every other call to the wrapped function """
-    if os.environ.get("CHAOS") != "true":
+    if not os.environ.get("CHAOS"):
         return func
     counter = 0
     def wrapped(*args, **kwargs):
