@@ -7,9 +7,10 @@ def raise_rediserror_every_other_time(func):
     if os.environ.get("CHAOS") != "true":
         return func
     counter = 0
-    def wrapped():
+    def wrapped(*args, **kwargs):
+        nonlocal counter
         counter += 1
         if counter % 2 == 0:
             raise redis.exceptions.RedisError("CHAOS")
-        return func()
+        return func(*args, **kwargs)
     return wrapped
