@@ -247,7 +247,6 @@
     cat <<EOF | sudo -u postgres psql
     CREATE DATABASE chaos;
     CREATE USER chaos WITH ENCRYPTED PASSWORD 'chaos';
-    GRANT ALL PRIVILEGES ON DATABASE chaos TO chaos;
-    GRANT ALL PRIVILEGES ON DATABASE booktown TO chaos;
+    ALTER USER chaos WITH SUPERUSER;
     \q
     EOF
