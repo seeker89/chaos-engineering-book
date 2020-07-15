@@ -233,6 +233,14 @@
     && sudo mv pgweb_linux_amd64 /usr/local/bin/pgweb
     && exit 0
 
+- name: Fill in some data for postgres
+  become: true
+  shell: |
+    git clone https://github.com/sosedoff/pgweb.git /tmp/pgweb
+    cd /tmp/pgweb
+    git checkout v0.11.6
+    sudo -u postgres psql -f ./data/booktown.sql
+
 - name: Create the postgres database
   become: true
   shell: |
@@ -240,5 +248,6 @@
     CREATE DATABASE chaos;
     CREATE USER chaos WITH ENCRYPTED PASSWORD 'chaos';
     GRANT ALL PRIVILEGES ON DATABASE chaos TO chaos;
+    GRANT ALL PRIVILEGES ON DATABASE booktown TO chaos;
     \q
     EOF
