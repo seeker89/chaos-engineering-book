@@ -232,3 +232,13 @@
     && rm pgweb_linux_amd64.zip \
     && sudo mv pgweb_linux_amd64 /usr/local/bin/pgweb
     && exit 0
+
+- name: Create the postgres database
+  become: true
+  shell: |
+    cat <<EOF | sudo -u postgres psql
+    CREATE DATABASE chaos;
+    CREATE USER chaos WITH ENCRYPTED PASSWORD 'chaos';
+    GRANT ALL PRIVILEGES ON DATABASE chaos TO chaos;
+    \q
+    EOF
