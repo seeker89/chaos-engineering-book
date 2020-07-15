@@ -44,6 +44,8 @@ packages_to_install:
   - libseccomp-dev
   # java
   - openjdk-8-jdk
+  - postgresql
+  - postgresql-contrib
 
 packages_to_remove:
   - libreoffice-core
