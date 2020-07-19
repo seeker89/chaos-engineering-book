@@ -1,5 +1,5 @@
-const originalMethod = window.XMLHttpRequest.send;
-window.XMLHttpRequest.send = function(){
+const originalMethod = window.XMLHttpRequest.prototype.send;
+window.XMLHttpRequest.prototype.send = function(){
     let that = this;
     let args = [...arguments];
     let cb = function() {
