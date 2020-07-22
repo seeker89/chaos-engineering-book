@@ -6,5 +6,5 @@ window.XMLHttpRequest.prototype.send = function(){
         return originalSend.apply(this, [...arguments]);
     }
     console.log("Unlucky " + counter + "!", new Date());
-    this.dispatchEvent(new Event('timeout'));
+    this.dispatchEvent(new Event('error'));
 }
