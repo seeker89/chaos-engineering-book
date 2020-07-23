@@ -231,7 +231,6 @@
     && unzip pgweb_linux_amd64.zip \
     && rm pgweb_linux_amd64.zip \
     && sudo mv pgweb_linux_amd64 /usr/local/bin/pgweb
-    && exit 0
 
 - name: Fill in some data for postgres
   become: true
