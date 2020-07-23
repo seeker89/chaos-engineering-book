@@ -112,7 +112,6 @@
     echo 1 > /proc/sys/vm/overcommit_memory
 
 - name: Prebuild python 3.7 from source with dtrace support
-  become: make
   shell: |
     # install the dependencies
     sudo apt-get install -y build-essential
