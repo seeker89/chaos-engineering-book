@@ -9,7 +9,7 @@ validate:
 
 build: validate
 	${packer_bin} build -on-error=ask ${template_file}
-	ls -al ${output_dir}
+	ls -alh ${output_dir}
 
 package:
 	shasum -a 256 ${output_dir}/* | tee chaos-engineering-VM.sha256
@@ -17,4 +17,7 @@ package:
 	shasum -a 256 ${vm_name}* | tee parts.sha256
 	ls -alh ${vm_name}*
 
-.PHONY: validate build package
+clean:
+	rm -rf ${output_dir}
+
+.PHONY: validate build package clean
