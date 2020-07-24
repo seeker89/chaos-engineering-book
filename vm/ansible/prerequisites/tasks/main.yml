@@ -139,6 +139,7 @@
     make
     #make test
     sudo make install
+    ./python --version
 
 - name: Install pip dependencies
   become: true
