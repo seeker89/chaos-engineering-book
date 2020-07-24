@@ -17,4 +17,7 @@ package:
 	shasum -a 256 ${vm_name}* | tee parts.sha256
 	ls -alh ${vm_name}*
 
-.PHONY: validate build package
+clean:
+	rm -rf ${output_dir}
+
+.PHONY: validate build package clean
