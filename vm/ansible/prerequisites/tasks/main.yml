@@ -111,20 +111,6 @@
   shell: |
     echo 1 > /proc/sys/vm/overcommit_memory
 
-- name: Use prebuilt python 3.7 with dtrace support
-  block:
-    - name: Copy file the prebuilt-binary
-      copy:
-        src: python3.7.0-dtrace.gz
-        dest: /home/chaos/Python-3.7.0/python3.7.0-dtrace.gz
-
-    - name: Unpack the binary
-      shell: |
-        cd /home/chaos/Python-3.7.0
-        gunzip ython3.7.0-dtrace.gz
-        chmod +x python
-        ./python --version
-
 - name: Prebuild python 3.7 from source with dtrace support
   shell: |
     # install the dependencies
@@ -149,7 +135,7 @@
     curl -o Python-3.7.0.tgz https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
     tar -xzf Python-3.7.0.tgz
     cd Python-3.7.0
-    ./configure --with-dtrace --enable-optimizations
+    ./configure --with-dtrace --without-tests
     make
     #make test
     sudo make install
