@@ -1,4 +1,2 @@
 Manifest-Version: 1.0
 Premain-Class: org.agent2.Agent
-Can-Redefine-Classes: true
-Can-Retransform-Classes: true
