@@ -47,7 +47,7 @@ run7:
 
 
 example1-compile:
-	javac ./org/my/example1.java
+	javac ./org/my/Example1.java
 example1-run:
 	java org.my.Example1
 example1-bytecode:
@@ -56,7 +56,7 @@ example1-agent:
 	java -javaagent:./agent1.jar org.my.Example1
 
 example2-compile:
-	javac ./org/my/example2.java
+	javac ./org/my/Example2.java
 example2-run:
 	java org.my.Example2
 example2-bytecode:
