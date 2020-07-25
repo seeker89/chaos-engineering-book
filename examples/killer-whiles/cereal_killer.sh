@@ -7,7 +7,7 @@ echo
 echo "Killing instance A (port 8001)"
 ps auxf | grep 8001 | awk '{system("sudo kill " $2)}'
 sleep 0.5
-systemctl status faas001_a
+systemctl status faas001_a --no-pager
 echo
 
 echo "Wait some time in-between killings"
@@ -17,7 +17,7 @@ echo
 echo "Killing instance B (port 8002)"
 ps auxf | grep 8002 | awk '{system("sudo kill " $2)}'
 sleep 0.5
-systemctl status faas001_b
+systemctl status faas001_b --no-pager
 echo
 
 echo "Listing backend services"
