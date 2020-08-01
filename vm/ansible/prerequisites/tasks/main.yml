@@ -139,6 +139,7 @@
     make
     #make test
     sudo make install
+    make clean
     ./python --version
 
 - name: Install pip dependencies
