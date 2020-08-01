@@ -205,6 +205,7 @@
   lineinfile:
     path: /etc/gdm3/custom.conf
     line: "{{ item }}"
+    insertafter: "daemon"
   loop:
     - "AutomaticLoginEnable = true"
     - "AutomaticLogin = chaos"
