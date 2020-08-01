@@ -55,6 +55,8 @@ packages_to_remove:
   - thunderbird
   - gnome-getting-started-docs
   - example-content
+  - rhythmbox
+  - rhythmbox-data
 
 docker_images_to_pull:
   - ubuntu:focal-20200423
