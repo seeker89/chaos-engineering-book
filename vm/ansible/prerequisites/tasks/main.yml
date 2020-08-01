@@ -234,10 +234,9 @@
     && sudo mv pgweb_linux_amd64 /usr/local/bin/pgweb
 
 - name: Fill in some data for postgres
-  become: true
   shell: |
-    git clone https://github.com/sosedoff/pgweb.git /tmp/pgweb
-    cd /tmp/pgweb
+    git clone https://github.com/sosedoff/pgweb.git ~/pgweb
+    cd ~/pgweb
     git checkout v0.11.6
     sudo -u postgres psql -f ./data/booktown.sql
 
