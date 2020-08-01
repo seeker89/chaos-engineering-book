@@ -217,7 +217,8 @@
     make
     sudo mv ./src/redis-server /usr/bin/redis-server
     sudo mv ./src/redis-cli /usr/bin/redis-cli
-    rm redis-6.0.5.tar.gz
+    cd ..
+    rm -rf redis-6.0.5 redis-6.0.5.tar.gz
     exit 0
 
 # https://github.com/sosedoff/pgweb/wiki/Installation#linux

@@ -44,7 +44,9 @@ packages_to_install:
   - postgresql-contrib
 
 packages_to_remove:
+  - libreoffice-common
   - libreoffice-core
+  - libreoffice-core-nogui
   - libreoffice-calc
   - libreoffice-writer
   - libreoffice-draw
