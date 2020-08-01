@@ -75,11 +75,11 @@
     sudo usermod -aG docker $USER
     exit 0
 
-- name: Load kind images onto nodes
-  shell: |
-    kind create cluster
-    kind delete cluster
-    exit 0
+# - name: Load kind images onto nodes
+#   shell: |
+#     kind create cluster
+#     kind delete cluster
+#     exit 0
 
 - name: Install pumba
   shell: |
