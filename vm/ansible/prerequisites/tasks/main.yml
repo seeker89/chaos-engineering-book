@@ -249,3 +249,9 @@
     ALTER USER chaos WITH SUPERUSER;
     \q
     EOF
+
+- name: Clean up
+  become: true
+  shell: |
+    apt-get autoclean
+    apt-get clean
