@@ -141,6 +141,8 @@
     sudo make install
     make clean
     ./python --version
+    cd ..
+    rm Python-3.7.0.tgz
 
 - name: Install pip dependencies
   become: true
