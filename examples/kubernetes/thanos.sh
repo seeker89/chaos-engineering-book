@@ -8,5 +8,5 @@ do
     | sort --random-sort \
     | head -n 1 \
     | xargs kubectl delete
-  sleep 5
+  sleep 10
 done
