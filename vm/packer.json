@@ -1,10 +1,10 @@
 {
     "variables": {
-        "name": "chaos-ubuntu-18.04-amd64",
+        "name": "chaos-ubuntu-20.04-amd64",
         "cpus": "2",
         "memory": "4096",
         "vram": "64",
-        "ubuntu_codename": "bionic",
+        "ubuntu_codename": "focal",
         "ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/dists/",
         "ssh_username": "chaos",
         "ssh_password": "chaos",
@@ -17,8 +17,8 @@
             "type": "virtualbox-iso",
             "guest_os_type": "Ubuntu_64",
             "iso_checksum_type": "sha256",
-            "iso_checksum_url": "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/images/SHA256SUMS",
-            "iso_urls": [ "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/images/netboot/mini.iso" ],
+            "iso_checksum_url": "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/legacy-images/SHA256SUMS",
+            "iso_urls": [ "{{ user `ubuntu_mirror` }}{{ user `ubuntu_codename` }}/main/installer-amd64/current/legacy-images/netboot/mini.iso" ],
             "ssh_username": "{{ user `ssh_username` }}",
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_wait_timeout": "60m",

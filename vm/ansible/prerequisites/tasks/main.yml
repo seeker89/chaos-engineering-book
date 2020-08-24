@@ -75,11 +75,11 @@
     sudo usermod -aG docker $USER
     exit 0
 
-- name: Load kind images onto nodes
-  shell: |
-    kind create cluster
-    kind delete cluster
-    exit 0
+# - name: Load kind images onto nodes
+#   shell: |
+#     kind create cluster
+#     kind delete cluster
+#     exit 0
 
 - name: Install pumba
   shell: |
@@ -139,7 +139,10 @@
     make
     #make test
     sudo make install
+    make clean
     ./python --version
+    cd ..
+    rm Python-3.7.0.tgz
 
 - name: Install pip dependencies
   become: true
@@ -205,6 +208,7 @@
   lineinfile:
     path: /etc/gdm3/custom.conf
     line: "{{ item }}"
+    insertafter: "daemon"
   loop:
     - "AutomaticLoginEnable = true"
     - "AutomaticLogin = chaos"
@@ -217,7 +221,8 @@
     make
     sudo mv ./src/redis-server /usr/bin/redis-server
     sudo mv ./src/redis-cli /usr/bin/redis-cli
-    rm redis-6.0.5.tar.gz
+    cd ..
+    rm -rf redis-6.0.5 redis-6.0.5.tar.gz
     exit 0
 
 # https://github.com/sosedoff/pgweb/wiki/Installation#linux
@@ -233,10 +238,9 @@
     && sudo mv pgweb_linux_amd64 /usr/local/bin/pgweb
 
 - name: Fill in some data for postgres
-  become: true
   shell: |
-    git clone https://github.com/sosedoff/pgweb.git /tmp/pgweb
-    cd /tmp/pgweb
+    git clone https://github.com/sosedoff/pgweb.git ~/pgweb
+    cd ~/pgweb
     git checkout v0.11.6
     sudo -u postgres psql -f ./data/booktown.sql
 
@@ -249,3 +253,11 @@
     ALTER USER chaos WITH SUPERUSER;
     \q
     EOF
+
+- name: Clean up
+  become: true
+  shell: |
+    rm -rf /home/chaos/.gradle
+    apt-get clean
+    apt-get autoclean
+    apt-get autoremove --purge -y

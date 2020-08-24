@@ -1,6 +1,5 @@
 ---
-apt_repositories:
-  - ppa:longsleep/golang-backports
+apt_repositories: []
 
 packages_to_install:
   - git
@@ -8,10 +7,8 @@ packages_to_install:
   - curl
   - nginx
   - apache2-utils
-  - docker.io=19.03.6-0ubuntu1~18.04.1
+  - docker.io=19.03.8-0ubuntu1.20.04
   - sysstat
-  # ppa:longsleep/golang-backports
-  - golang-go
   - python3-pip
   - stress
   - bpfcc-tools
@@ -21,7 +18,6 @@ packages_to_install:
   - zlib1g-dev
   - libffi-dev
   # cgroups utils
-  - cgroup-bin
   - cgroup-lite
   - cgroup-tools
   - cgroupfs-mount
@@ -48,7 +44,9 @@ packages_to_install:
   - postgresql-contrib
 
 packages_to_remove:
+  - libreoffice-common
   - libreoffice-core
+  - libreoffice-core-nogui
   - libreoffice-calc
   - libreoffice-writer
   - libreoffice-draw
@@ -57,6 +55,8 @@ packages_to_remove:
   - thunderbird
   - gnome-getting-started-docs
   - example-content
+  - rhythmbox
+  - rhythmbox-data
 
 docker_images_to_pull:
   - ubuntu:focal-20200423
