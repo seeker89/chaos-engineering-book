@@ -1,0 +1,12 @@
+scenarios:
+- name: Stop that host!
+  steps:
+  - podAction:
+      matches:
+        - namespace: mynamespace
+      filters:
+        - randomSample:
+            size: 1
+      actions:
+        - stopHost:
+            autoRestart: true
