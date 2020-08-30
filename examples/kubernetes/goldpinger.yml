@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goldpinger
+  namespace: default
+  labels:
+    app: goldpinger
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: goldpinger
+  template:
+    metadata:
+      labels:
+        app: goldpinger
+    spec:
+      serviceAccount: "goldpinger-serviceaccount"
+      containers:
+      - name: goldpinger
+        image: "docker.io/bloomberg/goldpinger:v3.0.0"
+        env:
+        - name: REFRESH_INTERVAL
+          value: "2"
+        - name: HOST
+          value: "0.0.0.0"
+        - name: PORT
+          value: "8080"
+        # injecting real pod IP will make things easier to understand
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        ports:
+        - containerPort: 8080
+          name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goldpinger
+  namespace: default
+  labels:
+    app: goldpinger
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: goldpinger

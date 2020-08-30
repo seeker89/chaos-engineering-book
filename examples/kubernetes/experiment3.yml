@@ -1,0 +1,54 @@
+config:
+  runStrategy:
+    minSecondsBetweenRuns: 5
+    maxSecondsBetweenRuns: 10
+scenarios:
+- name: Verify pod start SLO
+  steps:
+  - kubectl:
+      autoDelete: true
+      # equivalent to `kubectl apply -f -`
+      action: apply
+      payload: |
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: slo-test
+          labels:
+            app: slo-test
+        spec:
+          containers:
+          - name: goldpinger
+            image: docker.io/bloomberg/goldpinger:v3.0.0
+            env:
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "8080"
+            ports:
+            - containerPort: 8080
+              name: goldpinger
+        ---
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: slo-test
+        spec:
+          type: LoadBalancer
+          ports:
+            - port: 8080
+              name: goldpinger
+          selector:
+            app: slo-test
+  # wait the minimal time for the SLO
+  - wait:
+      seconds: 30
+  # make sure the service responds
+  - probeHTTP:
+      target:
+        service:
+          name: slo-test
+          namespace: default
+          port: 8080
+      endpoint: /healthz

@@ -1,0 +1,17 @@
+config:
+  runStrategy:
+    runs: 1
+scenarios:
+- name: Kill 50% of Goldpinger nodes
+  steps:
+  - podAction:
+      matches:
+        - labels:
+            selector: app=goldpinger
+            namespace: default
+      filters:
+        - randomSample:
+            ratio: 0.5
+      actions:
+        - kill:
+            force: true

@@ -1,0 +1,9 @@
+scenarios:
+- name: Just check that my service responds
+  steps:
+  - probeHTTP:
+      target:
+        service:
+          name: my-service
+          namespace: myapp
+      endpoint: /healthz

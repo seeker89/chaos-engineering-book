@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: goldpinger-chaos
+  namespace: default
+  labels:
+    app: goldpinger
+    chaos: absolutely
+spec:
+  serviceAccount: "goldpinger-serviceaccount"
+  containers:
+  - name: goldpinger
+    image: docker.io/bloomberg/goldpinger:v3.0.0
+    env:
+    - name: REFRESH_INTERVAL
+      value: "2"
+    - name: HOST
+      value: "0.0.0.0"
+    - name: PORT
+      value: "9090"
+    - name: CLIENT_PORT_OVERRIDE
+      value: "8080"
+    - name: POD_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+  - name: toxiproxy
+    image: docker.io/shopify/toxiproxy:2.1.4
+    ports:
+    - containerPort: 8474
+      name: toxiproxy-api
+    - containerPort: 8080
+      name: goldpinger
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goldpinger-chaos
+  namespace: default
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8474
+      name: toxiproxy-api
+  selector:
+    chaos: absolutely
