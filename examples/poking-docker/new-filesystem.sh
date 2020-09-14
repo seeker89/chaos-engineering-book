@@ -11,6 +11,9 @@ echo "Step 2. Copy some (very) minimal binaries"
 for tool in $TOOLS; do
     cp -v --parents `which $tool` $NEW_FILESYSTEM_ROOT;
 done
+# link /bin/bash to /usr/bin/bash to match Ubuntu 20.20
+mkdir -p $NEW_FILESYSTEM_ROOT/bin
+ln -s ../usr/bin/bash $NEW_FILESYSTEM_ROOT/bin/bash
 
 echo "Step 3. Copy over their libs"
 # use ldd to find the dependencies of the tools we've just copied

@@ -1,0 +1,22 @@
+config:
+  runStrategy:
+    runs: 1
+scenarios:
+- name: Toxiproxy latency
+  steps:
+  - clone:
+      source:
+        deployment:
+          name: goldpinger
+          namespace: default
+      replicas: 2
+      mutations:
+        - toxiproxy:
+            toxics:
+              - targetProxy: "8080"
+                toxicType: latency
+                toxicAttributes:
+                  - name: latency
+                    value: 250
+  - wait:
+      seconds: 120
