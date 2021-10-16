@@ -24,7 +24,7 @@
       ```
   - Windows
     - Confirm the checksums. On Windows 10, use 
-      [Cygwin](http://www.cygwin.com/), WLS, or run the followin in a command line: 
+      [Cygwin](http://www.cygwin.com/), WLS, or run the followin in a Windows command line (CMD): 
       ```
       CertUtil -hashfile PATH_TO/parts.sha256 SHA256 
       ``` 
