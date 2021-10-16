@@ -1,6 +1,6 @@
 # Getting started
 
-
+## TL;DR
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice (make sure the files are all in the same directory)
 - Unzip the downloaded files
@@ -29,7 +29,7 @@
       ``` 
       Or use .
     - Unzip the `.zip` file - your zip program (like 7-zip) should automatically find all files
-    - Confirm the resulting VM image is intact agaist  `chaos-engineering-VM.sha256`
+    - Confirm the resulting VM image is intact against  `chaos-engineering-VM.sha256`
   - There should be two files in a new subfolder: a `.ovf` and `.vmdk` one
   - Pick the VM image file (the `.ovf` file) you downloaded and unzipped
   - Follow the wizard until completion
