@@ -1,6 +1,7 @@
 # Getting started
 
 ## TL;DR
+
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - Download [the lastest release of the VM image](https://github.com/seeker89/chaos-engineering-in-action/releases) to a location of your choice (make sure the files are all in the same directory)
 - Unzip the downloaded files
